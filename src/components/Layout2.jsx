@@ -26,7 +26,7 @@ const isCurrentlyOpen = () => {
     : { isOpen: false, message: "We're closed now. Opening hours: 8:00 AM - 8:00 PM" };
 };
 
-function App() {
+function Layout2() {
   const nextSunday = getNextSundayDate();
   const isOpen = isOpenThisSunday();
   const currentStatus = isCurrentlyOpen();
@@ -80,4 +80,4 @@ function App() {
 
 export const revalidate = 86400; // revalidate every 24 hours
 
-export default App;
+export default Layout2;

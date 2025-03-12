@@ -1,9 +1,9 @@
 import React from 'react'
 
-function welcome() {
+function Welcome() {
   return (
-    <div>welcome</div>
+    <div className='font-bold w-xl'>welcome</div>
   )
 }
 
-export default welcome
+export default Welcome;
