@@ -43,18 +43,18 @@ function App() {
 
         <div className='relative flex flex-col md:flex-row justify-center items-center gap-6 p-5 w-full max-w-4xl'>
           <div className='p-8 shadow-xl min-h-[200px]  bg-white rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
-            <div className={`px-2 py-1 text-center rounded-full text-2xl font-medium ${currentStatus.isOpen ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+            <div className={`px-2 py-1 text-center rounded-full text-2xl   font-medium ${currentStatus.isOpen ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
               {currentStatus.isOpen ? "Open Now" : "Closed Now"}
             </div>
             <p className="mt-2 text-center text-sm">{currentStatus.message}</p>
           </div>
 
           <div className='p-8 shadow-xl bg-white rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
-            <h3 className="font-semibold mb-2 text-center">Regular Hours</h3>
-            <hr className="my-2 border-t border-gray-700" />
-            <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+            <h3 className="font-semibold mb-2 text-center text-xl">Regular Hours</h3>
+            <hr className="my-2 border-t border-gray-700 " />
+            <p className=' text-base'>Monday - Saturday: 8:00 AM - 8:00 PM</p>
             <hr className="my-2 border-t border-gray-300" />
-            <p className="mb-2">
+            <p className="mb-2 text-base">
               Next Sunday ({formatDate(nextSunday)}): {isOpen ? "Open" : "Closed"}
               <hr className="my-2 border-t border-gray-300" />
             </p>
@@ -62,8 +62,10 @@ function App() {
         </div>
 
         {/* FOOTER */}
-        <div className=' absolute bottom-0 w-full bg-white p-6 text-center shadow-xl rounded-lg'>
-          <p className='text-sm mt-0.7'>
+        <div className=' absolute bottom-0 w-full bg-white px-3 py-0.5 text-center shadow-xl rounded-lg'>
+          {/* /* add a note text that aligns */ }
+          <h1 className='font-bold text-lg text-red-800 underline mb'>Note</h1>
+          <p className='text-sm mt-0.7 text-wrap '>
             We alternate our Sunday openings. We're {isOpen ? "open" : "closed"} on {formatDate(nextSunday)},
             and we'll be {!isOpen ? "open" : "closed"} the following Sunday.
           </p>
