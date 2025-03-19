@@ -66,7 +66,7 @@ function App() {
           {/* /* add a note text that aligns */ }
           <h1 className='font-bold text-lg text-red-800 underline mb'>Note</h1>
           <p className='text-sm mt-0.7 text-wrap '>
-            We alternate our Sunday openings. We're {isOpen ? "open" : "closed"} on {formatDate(nextSunday)},
+            We alternate our Sunday openings. We'll be {isOpen ? "open" : "closed"} on {formatDate(nextSunday)},
             and we'll be {!isOpen ? "open" : "closed"} the following Sunday.
           </p>
         </div>
