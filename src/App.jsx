@@ -38,18 +38,19 @@ function App() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className='fixed inset-0 flex flex-col justify-center items-center bg-cover bg-center bg-[url(/food.jpg)]'>
-        <div className='absolute inset-0 bg-black opacity-30'></div>
+      <div className='bg-[url(/food.jpg)] bg-cover bg-center px-2 pt-20 pb-14 min-h-screen 
+  sm:fixed sm:inset-0 sm:flex sm:flex-col sm:justify-center sm:items-center'>
+        <div className='absolute h-145 inset-0 bg-black lg:h-full opacity-30'></div>
 
         <div className='relative flex flex-col md:flex-row justify-center items-center gap-6 p-5 w-full max-w-4xl'>
           <div className='p-8 shadow-xl min-h-[200px]  bg-white rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
-            <div className={`px-2 py-1 text-center rounded-full text-2xl   font-medium ${currentStatus.isOpen ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+            <div className={`px-2 py-1 text-center rounded-full text-2xl font-medium ${currentStatus.isOpen ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
               {currentStatus.isOpen ? "Open Now" : "Closed Now"}
             </div>
             <p className="mt-2 text-center text-sm">{currentStatus.message}</p>
           </div>
 
-          <div className='p-8 shadow-xl bg-white rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
+          <div className='p-8 shadow-xl bg-white sm:mb rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
             <h3 className="font-semibold mb-2 text-center text-xl">Regular Hours</h3>
             <hr className="my-2 border-t border-gray-700 " />
             <p className=' text-base'>Monday - Saturday: 8:00 AM - 8:00 PM</p>
@@ -62,17 +63,17 @@ function App() {
         </div>
 
         {/* FOOTER */}
-        <div className=' absolute bottom-0 w-full bg-white px-3 py-0.5 text-center shadow-xl rounded-lg'>
-          {/* /* add a note text that aligns */}
+        <div className='mt-8 w-full bg-white px-3 py-2 text-center shadow-xl rounded-lg sm:fixed sm:bottom-0 sm:top-140'>
+        {/* /* add a note text that aligns */}
           <h1 className='font-bold text-lg text-red-800 underline mb'>Note</h1>
           <p className='text-sm mt-0.7 text-wrap'>
             We alternate our Sunday openings. We'll be {isOpen ? "opened" : "closed"} on {formatDate(nextSunday)},
             and we'll be {!isOpen ? "opened" : "closed"} the following Sunday.
           </p>
-          <span className='font-bold text-lg text-red-800'>Contact Us: </span> 
-            <a href="tel:+2348069215338" className="text-sm mt-0.7 hover:underline text-wrap ">
-              0806-9215-338
-            </a>
+          <span className='font-bold text-lg text-red-800'>Contact Us: </span>
+          <a href="tel:+2348069215338" className="text-sm mt-0.7 hover:underline text-wrap ">
+            0806-9215-338
+          </a>
         </div>
       </div>
 
