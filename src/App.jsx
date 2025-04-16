@@ -63,7 +63,7 @@ function App() {
         </div>
 
         {/* FOOTER */}
-        <div className='mt-8 w-full bg-white px-3 py-2 text-center shadow-xl rounded-lg sm:fixed sm:bottom-0 sm:top-140'>
+        <div className='mt-8 w-full bg-white px-3 py-2 lg:absolute lg:top-133 text-center shadow-xl rounded-lg sm:fixed sm:bottom-0 sm:top-140'>
         {/* /* add a note text that aligns */}
           <h1 className='font-bold text-lg text-red-800 underline mb'>Note</h1>
           <p className='text-sm mt-0.7 text-wrap'>
