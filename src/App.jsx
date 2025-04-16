@@ -38,7 +38,7 @@ function App() {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className='bg-[url(/food.jpg)] bg-cover bg-center px-2 pt-20 pb-14 min-h-screen 
+      <div className='bg-[url(/food.jpg)] bg-cover bg-center px-2 pt-20 pb-1.5 min-h-screen 
   sm:fixed sm:inset-0 sm:flex sm:flex-col sm:justify-center sm:items-center'>
         <div className='absolute h-145 inset-0 bg-black lg:h-full opacity-30'></div>
 
