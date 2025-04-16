@@ -40,7 +40,7 @@ function App() {
       {/* MAIN CONTENT */}
       <div className='bg-[url(/food.jpg)] bg-cover bg-center px-2 pt-20 pb-1.5 min-h-screen 
   sm:fixed sm:inset-0 sm:flex sm:flex-col sm:justify-center sm:items-center'>
-        <div className='absolute h-145 inset-0 bg-black lg:h-full opacity-30'></div>
+        <div className='absolute h-158 inset-0 bg-black lg:h-full opacity-30'></div>
 
         <div className='relative flex flex-col md:flex-row justify-center items-center gap-6 p-5 w-full max-w-4xl'>
           <div className='p-8 shadow-xl min-h-[200px]  bg-white rounded-lg relative z-10 flex-1 flex flex-col justify-center'>
