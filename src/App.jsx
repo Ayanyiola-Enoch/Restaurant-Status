@@ -33,8 +33,7 @@ function App() {
     <>
       {/* LOGO */}
       <div className='p-5 font-bold border-b-2 text-white flex justify-between h-16.5 bg-gradient-to-r from-purple-500 to-pink-500 items-center fixed top-0 w-full z-50'>
-        <img src='/food-png.png' alt='logo' className='h-10' />
-        <p className='hover:border-b-2 cursor-pointer text-white'>G&G Restaurant</p>
+      <img src='/food-png.png' alt='logo' className='h-10 filter brightness-0 invert' />        <p className='hover:border-b-2 cursor-pointer text-white'>G&G Restaurant</p>
       </div>
 
       {/* MAIN CONTENT */}
