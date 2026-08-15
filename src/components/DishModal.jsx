@@ -46,28 +46,28 @@ export default function DishModal({ dish, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       
       {/* Backdrop */}
       <div 
         onClick={onClose}
-        className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity animate-in fade-in duration-200" 
+        className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200" 
       />
 
       {/* Modal Card */}
-      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-200 my-8">
+      <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-200 my-4 sm:my-8 max-h-[92vh] flex flex-col">
         
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/90 text-slate-700 hover:text-black border border-slate-200 hover:bg-white transition-all cursor-pointer shadow-sm"
+          className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 p-2 sm:p-2.5 rounded-full bg-white/90 text-slate-700 hover:text-black border border-slate-200 hover:bg-white transition-all cursor-pointer shadow-sm"
           aria-label="Close modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Top Header Image */}
-        <div className="relative h-60 sm:h-64 w-full bg-slate-100 overflow-hidden">
+        <div className="relative h-48 sm:h-64 w-full bg-slate-100 overflow-hidden shrink-0">
           <img
             src={dish.image || '/food.jpg'}
             alt={dish.name}
@@ -80,53 +80,53 @@ export default function DishModal({ dish, onClose }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
           {/* Badges on image */}
-          <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between text-white">
-            <div>
+          <div className="absolute bottom-3.5 left-4 right-4 sm:bottom-4 sm:left-6 sm:right-6 flex items-end justify-between text-white">
+            <div className="max-w-[70%]">
               {dish.badge && (
-                <span className="inline-block px-3 py-1 rounded-md text-[11px] font-black bg-[#1E6FBA] text-white shadow-xs mb-1.5">
+                <span className="inline-block px-2.5 py-0.5 rounded-md text-[10px] sm:text-[11px] font-black bg-[#1E6FBA] text-white shadow-xs mb-1">
                   {dish.badge}
                 </span>
               )}
-              <h2 className="text-2xl sm:text-3xl font-black drop-shadow-md">
+              <h2 className="text-xl sm:text-3xl font-black drop-shadow-md leading-tight">
                 {dish.name}
               </h2>
             </div>
-            <div className="text-right">
-              <span className="text-xs uppercase text-blue-200 font-bold block">Price</span>
-              <span className="text-2xl sm:text-3xl font-black text-white">
+            <div className="text-right shrink-0">
+              <span className="text-[10px] sm:text-xs uppercase text-blue-200 font-bold block">Price</span>
+              <span className="text-xl sm:text-3xl font-black text-white">
                 {formatNaira(dish.price)}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+        {/* Modal Body (Scrollable) */}
+        <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
           
           {/* Quick Metrics */}
-          <div className="flex flex-wrap items-center gap-3 text-xs font-semibold pb-4 border-b border-slate-100 text-slate-600">
-            <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
-              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-              <span>{dish.rating} ({dish.reviews} reviews)</span>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold pb-3 sm:pb-4 border-b border-slate-100 text-slate-600">
+            <div className="flex items-center gap-1 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+              <span>{dish.rating} ({dish.reviews})</span>
             </div>
 
-            <div className="flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200">
-              <Clock className="w-4 h-4 text-[#1E6FBA]" />
+            <div className="flex items-center gap-1 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+              <Clock className="w-3.5 h-3.5 text-[#1E6FBA]" />
               <span>Prep: {dish.prepTime}</span>
             </div>
 
             {dish.spiceLevel && dish.spiceLevel !== 'None' && (
-              <div className="flex items-center gap-1.5 bg-rose-50 px-3 py-1.5 rounded-lg border border-rose-200 text-rose-700">
-                <Flame className="w-4 h-4 fill-rose-500 text-rose-500" />
-                <span>{dish.spiceLevel} Spice</span>
+              <div className="flex items-center gap-1 bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200 text-rose-700">
+                <Flame className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
+                <span>{dish.spiceLevel}</span>
               </div>
             )}
           </div>
 
           {/* Description */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Description</h4>
-            <p className="text-sm text-slate-700 leading-relaxed font-normal">
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Description</h4>
+            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
               {dish.description}
             </p>
           </div>
@@ -134,10 +134,10 @@ export default function DishModal({ dish, onClose }) {
           {/* Key Ingredients */}
           {dish.ingredients && dish.ingredients.length > 0 && (
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Ingredients</h4>
-              <div className="flex flex-wrap gap-1.5">
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Ingredients</h4>
+              <div className="flex flex-wrap gap-1">
                 {dish.ingredients.map((ing, i) => (
-                  <span key={i} className="text-xs px-2.5 py-1 rounded-md bg-[#EEF5FA] text-[#1E6FBA] border border-blue-100">
+                  <span key={i} className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEF5FA] text-[#1E6FBA] border border-blue-100">
                     {ing}
                   </span>
                 ))}
@@ -147,8 +147,8 @@ export default function DishModal({ dish, onClose }) {
 
           {/* Protein / Options Customization */}
           {dish.proteinOptions && dish.proteinOptions.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div className="space-y-1.5">
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
                 Select Option / Protein Choice
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -158,14 +158,14 @@ export default function DishModal({ dish, onClose }) {
                     <button
                       key={i}
                       onClick={() => setSelectedProtein(opt)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all text-left cursor-pointer ${
+                      className={`flex items-center justify-between px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border text-xs font-bold transition-all text-left cursor-pointer ${
                         isSelected
                           ? 'bg-[#1E6FBA] border-[#1E6FBA] text-white shadow-xs'
                           : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
                       <span className="truncate">{opt}</span>
-                      {isSelected && <Check className="w-4 h-4 text-white shrink-0 ml-2" />}
+                      {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0 ml-1.5" />}
                     </button>
                   );
                 })}
@@ -175,31 +175,31 @@ export default function DishModal({ dish, onClose }) {
 
           {/* Special Instructions */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Special Requests (Optional)</h4>
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Special Requests (Optional)</h4>
             <input
               type="text"
               value={specialInstructions}
               onChange={(e) => setSpecialInstructions(e.target.value)}
-              placeholder="e.g. Extra spicy, pack separately, no onions..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#1E6FBA]"
+              placeholder="e.g. Extra spicy, pack separately..."
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#1E6FBA]"
             />
           </div>
 
           {/* Quantity and Live Total */}
-          <div className="flex items-center justify-between p-4 rounded-2xl bg-[#EEF5FA] border border-blue-200">
+          <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-[#EEF5FA] border border-blue-200">
             <div>
-              <span className="text-xs text-slate-500 block font-semibold">Quantity</span>
-              <div className="flex items-center gap-3 mt-1">
+              <span className="text-[11px] text-slate-500 block font-semibold">Quantity</span>
+              <div className="flex items-center gap-2.5 mt-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center font-bold transition-colors cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center font-bold transition-colors cursor-pointer"
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="text-lg font-black text-slate-900 w-6 text-center">{quantity}</span>
+                <span className="text-base sm:text-lg font-black text-slate-900 w-5 text-center">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-8 h-8 rounded-lg bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center font-bold transition-colors cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center font-bold transition-colors cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
                 </button>
@@ -207,19 +207,19 @@ export default function DishModal({ dish, onClose }) {
             </div>
 
             <div className="text-right">
-              <span className="text-xs text-slate-500 uppercase tracking-wider font-bold">Total Amount</span>
-              <span className="text-2xl font-black text-[#1E6FBA] block">
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Total</span>
+              <span className="text-xl sm:text-2xl font-black text-[#1E6FBA] block">
                 {formatNaira(totalPrice)}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Modal Footer Actions */}
-        <div className="p-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
+        {/* Modal Footer Actions: stacked on mobile, row on sm+ */}
+        <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5 sm:gap-3 shrink-0">
           <button
             onClick={handleWhatsAppOrder}
-            className="flex-1 py-3.5 px-6 rounded-xl bg-[#1E6FBA] hover:bg-[#185d9c] text-white font-black text-sm shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full sm:flex-1 py-3 px-5 rounded-xl bg-[#1E6FBA] hover:bg-[#185d9c] text-white font-black text-xs sm:text-sm shadow-md shadow-blue-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Order via WhatsApp ({formatNaira(totalPrice)})</span>
@@ -227,7 +227,7 @@ export default function DishModal({ dish, onClose }) {
 
           <a
             href={`tel:${RESTAURANT_INFO.phone}`}
-            className="py-3.5 px-5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-sm border border-slate-200 flex items-center justify-center gap-2 transition-colors"
+            className="w-full sm:w-auto py-3 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200 flex items-center justify-center gap-2 transition-colors"
           >
             <Phone className="w-4 h-4 text-[#1E6FBA]" />
             <span>Call</span>
