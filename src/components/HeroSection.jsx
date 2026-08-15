@@ -1,15 +1,16 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import { RESTAURANT_INFO } from '../data/menuData';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { RESTAURANT_INFO } from "../data/menuData";
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section
+      id="hero"
+      className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 items-center">
-        
         {/* Left Column (Desktop: 6 cols, Mobile: full width) */}
         <div className="lg:col-span-6 space-y-5 sm:space-y-6 text-left">
-          
           {/* Red Pill Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1 rounded-full bg-[#E11D48] text-white text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-xs">
             <span>Authentic Cuisine</span>
@@ -24,7 +25,8 @@ export default function HeroSection() {
 
           {/* Subtitle */}
           <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed font-medium">
-            A culinary journey through the flavors of Nigeria, reimagined with contemporary techniques and authentic, rich home-cooked ingredients.
+            A culinary journey through the flavors of Nigeria, reimagined with
+            contemporary techniques and authentic, rich home-cooked ingredients.
           </p>
 
           {/* Quick Buttons: Full-width on mobile, auto width on desktop */}
@@ -50,17 +52,16 @@ export default function HeroSection() {
         <div className="lg:col-span-6 flex justify-center lg:justify-end mt-4 lg:mt-0">
           <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl bg-slate-100 aspect-4/3 sm:aspect-square">
             <img
-              src="/food.jpg"
+              src="/src/assets/HeroImage.png"
               alt="Authentic Nigerian Jollof Rice & Plantain"
               className="w-full h-full object-cover filter brightness-105 hover:scale-105 transition-transform duration-700"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = '/food.jpg';
+                e.target.src = "/food.jpg";
               }}
             />
           </div>
         </div>
-
       </div>
     </section>
   );
