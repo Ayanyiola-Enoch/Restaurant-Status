@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Navbar from './components/Navbar';
-import HeroStatus from './components/HeroStatus';
-import MenuSection from './components/MenuSection';
+import HeroSection from './components/HeroSection';
+import AboutSection from './components/AboutSection';
 import OpeningHoursSection from './components/OpeningHoursSection';
+import MenuSection from './components/MenuSection';
 import DishModal from './components/DishModal';
 import Footer from './components/Footer';
 import { MENU_ITEMS } from './data/menuData';
@@ -14,7 +15,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDish, setSelectedDish] = useState(null);
 
-  // Update status every 60 seconds to keep live badge accurate
+  // Keep live status refreshed every 60 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setStatus(getRealtimeStatus());
@@ -22,7 +23,7 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  // Filtered dishes based on active category tab and search query
+  // Filtered dishes
   const filteredDishes = useMemo(() => {
     return MENU_ITEMS.filter((dish) => {
       const matchesCategory = activeCategory === 'all' || dish.category === activeCategory;
@@ -38,22 +39,28 @@ function App() {
   }, [activeCategory, searchQuery]);
 
   const handleOpenSchedule = () => {
-    const el = document.getElementById('schedule');
+    const el = document.getElementById('hours');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-white">
-      {/* Navigation Header */}
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#1E6FBA] selection:text-white">
+      {/* 1. Navigation Header */}
       <Navbar status={status} onOpenSchedule={handleOpenSchedule} />
 
       <main className="flex-1">
-        {/* Hero & Status Banner */}
-        <HeroStatus status={status} onOpenSchedule={handleOpenSchedule} />
+        {/* 2. Hero Section: "Our Heritage on a Plate" */}
+        <HeroSection />
 
-        {/* Full Menu Catalog Section */}
+        {/* 3. About G&G Section with Floating Quote Box */}
+        <AboutSection />
+
+        {/* 4. Opening Hours & Live Status / Reservations Dual Cards */}
+        <OpeningHoursSection status={status} />
+
+        {/* 5. Menu Sections: Regular, Soups & Solids, Specials, Extras */}
         <MenuSection
           dishes={filteredDishes}
           activeCategory={activeCategory}
@@ -62,15 +69,12 @@ function App() {
           setSearchQuery={setSearchQuery}
           onSelectDish={setSelectedDish}
         />
-
-        {/* Opening Hours & 4-Week Sunday Schedule Forecast */}
-        <OpeningHoursSection status={status} />
       </main>
 
-      {/* Footer */}
+      {/* 6. Royal Blue Footer */}
       <Footer />
 
-      {/* Interactive Dish Customization & WhatsApp Order Modal */}
+      {/* 7. Dish Customization & WhatsApp Order Modal */}
       {selectedDish && (
         <DishModal
           dish={selectedDish}

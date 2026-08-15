@@ -23,12 +23,12 @@ export default function CategoryFilter({ activeCategory, setActiveCategory, sear
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search dishes (e.g., Jollof, Fried Rice, Asun, Egusi, Catfish)..."
-            className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-white placeholder-slate-400 text-sm font-medium transition-all shadow-inner backdrop-blur-md outline-none"
+            className="w-full pl-12 pr-10 py-3.5 rounded-2xl bg-white border border-slate-200 focus:border-[#1E6FBA] focus:ring-2 focus:ring-blue-100 text-slate-900 placeholder-slate-400 text-sm font-medium transition-all shadow-xs outline-none"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery('')}
-              className="absolute right-3.5 p-1 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="absolute right-3.5 p-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
               aria-label="Clear search"
             >
               <X className="w-4 h-4" />
@@ -37,7 +37,7 @@ export default function CategoryFilter({ activeCategory, setActiveCategory, sear
         </div>
       </div>
 
-      {/* Category Pills Slider / Tabs */}
+      {/* Category Pills Tabs */}
       <div className="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-none justify-start md:justify-center px-2">
         {MENU_CATEGORIES.map((cat) => {
           const Icon = iconMap[cat.icon] || UtensilsCrossed;
@@ -47,13 +47,13 @@ export default function CategoryFilter({ activeCategory, setActiveCategory, sear
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 shadow-lg shadow-orange-500/25 scale-[1.02]'
-                  : 'bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800'
+                  ? 'bg-[#1E6FBA] text-white shadow-md shadow-blue-500/20'
+                  : 'bg-white hover:bg-slate-50 text-slate-600 hover:text-[#1E6FBA] border border-slate-200/80'
               }`}
             >
-              <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950 stroke-[2.5]' : 'text-amber-400'}`} />
+              <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#1E6FBA]'}`} />
               <span>{cat.name}</span>
             </button>
           );

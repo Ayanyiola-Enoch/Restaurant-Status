@@ -1,90 +1,77 @@
 import React, { useState } from 'react';
-import { Phone, Clock, UtensilsCrossed, Menu as MenuIcon, X, MessageSquare, Sparkles } from 'lucide-react';
+import { Phone, UtensilsCrossed, Menu as MenuIcon, X, Clock, MessageSquare } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/menuData';
 
 export default function Navbar({ status, onOpenSchedule }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-white/10 shadow-2xl transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo & Brand */}
           <a href="#hero" className="flex items-center gap-3 group">
-            <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-orange-500 to-rose-500 p-0.5 shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center overflow-hidden">
-                <img 
-                  src="/food-png.png" 
-                  alt="G&G Logo" 
-                  className="h-8 w-8 object-contain filter brightness-110 drop-shadow group-hover:rotate-6 transition-transform" 
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.style.display = 'none';
-                  }}
-                />
-              </div>
+            <div className="w-10 h-10 rounded-full border-2 border-[#1E6FBA] flex items-center justify-center p-1 bg-white shadow-xs">
+              <img 
+                src="/food-png.png" 
+                alt="G&G Logo" 
+                className="h-7 w-7 object-contain" 
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.style.display = 'none';
+                }}
+              />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-xl font-black tracking-tight text-white group-hover:text-amber-400 transition-colors">
-                  {RESTAURANT_INFO.name}
-                </span>
-                <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-full">
-                  Authentic
-                </span>
-              </div>
-              <p className="text-xs text-slate-400 font-medium hidden sm:block">
-                {RESTAURANT_INFO.tagline}
-              </p>
+              <span className="text-xl font-black tracking-tight text-[#1E6FBA]">
+                {RESTAURANT_INFO.name}
+              </span>
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <a href="#menu" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-              <UtensilsCrossed className="w-4 h-4 text-amber-500" />
-              <span>Explore Menu</span>
-            </a>
-            <a href="#schedule" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-amber-500" />
-              <span>Opening Hours</span>
-            </a>
-            <a href="#contact" className="hover:text-amber-400 transition-colors flex items-center gap-1.5">
-              <Phone className="w-4 h-4 text-amber-500" />
-              <span>Contact Us</span>
-            </a>
+          {/* Center Navigation Links */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+            <a href="#hero" className="hover:text-[#1E6FBA] transition-colors">Home</a>
+            <a href="#about" className="hover:text-[#1E6FBA] transition-colors">About Us</a>
+            <a href="#hours" className="hover:text-[#1E6FBA] transition-colors">Hours & Status</a>
+            <a href="#menu" className="hover:text-[#1E6FBA] transition-colors">Menu</a>
+            <a href="#contact" className="hover:text-[#1E6FBA] transition-colors">Contact</a>
           </div>
 
-          {/* Status Badge & Actions */}
+          {/* Right Action & Live Status Badge */}
           <div className="hidden lg:flex items-center gap-4">
+            
             {/* Live Status Pill */}
             <button
               onClick={onOpenSchedule}
-              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full border text-xs font-semibold shadow-sm transition-all hover:scale-105 ${status.badgeColor} cursor-pointer`}
-              title="Click to view Sunday schedule details"
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all hover:scale-105 cursor-pointer ${
+                status.isOpen 
+                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' 
+                  : 'bg-rose-50 text-rose-700 border border-rose-200'
+              }`}
+              title="Click to view full schedule & Sunday alternating roster"
             >
-              <span className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-500" : "bg-red-500"} animate-pulse-glow`} />
+              <span className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-500" : "bg-rose-500"} animate-pulse`} />
               <span>{status.statusText}</span>
-              <span className="text-[10px] opacity-75 font-normal">| 8AM - 8PM</span>
+              <span className="text-[11px] font-normal text-slate-500">| 8AM - 8PM</span>
             </button>
 
-            {/* Quick Call Button */}
+            {/* Blue Order Now CTA */}
             <a
-              href={`tel:${RESTAURANT_INFO.phone}`}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-xs shadow-lg shadow-orange-500/20 hover:shadow-orange-500/35 transition-all hover:-translate-y-0.5 active:translate-y-0"
+              href="#menu"
+              className="px-5 py-2.5 rounded-xl bg-[#1E6FBA] hover:bg-[#185d9c] text-white font-bold text-xs shadow-md shadow-blue-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0"
             >
-              <Phone className="w-3.5 h-3.5 fill-slate-950" />
-              <span>{RESTAURANT_INFO.phoneDisplay}</span>
+              Order Now
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Trigger */}
           <div className="flex md:hidden items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white focus:outline-none"
-              aria-label="Toggle Navigation Menu"
+              className="p-2.5 rounded-xl bg-slate-100 text-slate-700 hover:text-black focus:outline-none"
+              aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
             </button>
@@ -94,58 +81,62 @@ export default function Navbar({ status, onOpenSchedule }) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel border-b border-white/10 px-6 py-6 space-y-4 animate-in slide-in-from-top-4 duration-200">
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-            <span className="text-xs text-slate-400 uppercase tracking-wider font-semibold">Status</span>
-            <div className={`flex items-center gap-2 px-3 py-1 rounded-full border text-xs font-semibold ${status.badgeColor}`}>
-              <span className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-500" : "bg-red-500"} animate-pulse-glow`} />
+        <div className="md:hidden bg-white border-b border-slate-200 px-6 py-6 space-y-4 shadow-xl">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+            <span className="text-xs text-slate-500 uppercase tracking-wider font-semibold">Today's Status</span>
+            <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold ${
+              status.isOpen ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'
+            }`}>
+              <span className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-500" : "bg-rose-500"} animate-pulse`} />
               <span>{status.statusText}</span>
             </div>
           </div>
 
-          <div className="flex flex-col gap-3 text-base font-semibold text-slate-200">
+          <div className="flex flex-col gap-3 text-base font-semibold text-slate-800">
+            <a 
+              href="#hero" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-50"
+            >
+              Home
+            </a>
+            <a 
+              href="#about" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-50"
+            >
+              About G&G
+            </a>
+            <a 
+              href="#hours" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-3 py-2 rounded-lg hover:bg-slate-50"
+            >
+              Opening Hours & Status
+            </a>
             <a 
               href="#menu" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-800 flex items-center gap-3"
+              className="px-3 py-2 rounded-lg hover:bg-slate-50"
             >
-              <UtensilsCrossed className="w-5 h-5 text-amber-400" />
-              <span>Our Menu & Specials</span>
-            </a>
-            <a 
-              href="#schedule" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-800 flex items-center gap-3"
-            >
-              <Clock className="w-5 h-5 text-amber-400" />
-              <span>Opening Hours & Sunday Schedule</span>
+              Full Menu
             </a>
             <a 
               href="#contact" 
               onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-lg hover:bg-slate-800 flex items-center gap-3"
+              className="px-3 py-2 rounded-lg hover:bg-slate-50"
             >
-              <Phone className="w-5 h-5 text-amber-400" />
-              <span>Contact & Directions</span>
+              Contact Us
             </a>
           </div>
 
-          <div className="pt-4 border-t border-slate-800 flex flex-col gap-2.5">
+          <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
             <a
               href={`tel:${RESTAURANT_INFO.phone}`}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#1E6FBA] text-white font-bold text-sm shadow-md"
             >
-              <Phone className="w-4 h-4 fill-slate-950" />
+              <Phone className="w-4 h-4 fill-white" />
               <span>Call Us: {RESTAURANT_INFO.phoneDisplay}</span>
-            </a>
-            <a
-              href={`https://wa.me/${RESTAURANT_INFO.whatsapp.replace('+', '')}?text=${encodeURIComponent("Hello G&G Restaurant, I want to place an order!")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-md"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Chat on WhatsApp</span>
             </a>
           </div>
         </div>
