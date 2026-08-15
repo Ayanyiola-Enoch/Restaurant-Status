@@ -1,0 +1,239 @@
+import React, { useState } from 'react';
+import { X, Star, Clock, Flame, Plus, Minus, MessageCircle, Phone, Check, ShieldCheck } from 'lucide-react';
+import { RESTAURANT_INFO } from '../data/menuData';
+import { formatNaira } from '../lib/utils';
+
+export default function DishModal({ dish, onClose }) {
+  if (!dish) return null;
+
+  const [quantity, setQuantity] = useState(1);
+  const [selectedProtein, setSelectedProtein] = useState(
+    dish.proteinOptions && dish.proteinOptions.length > 0 ? dish.proteinOptions[0] : 'Standard Portion'
+  );
+  const [specialInstructions, setSpecialInstructions] = useState('');
+
+  const calculateTotal = () => {
+    let basePrice = dish.price;
+    if (selectedProtein.includes('+₦')) {
+      const extraMatch = selectedProtein.match(/\+₦([\d,]+)/);
+      if (extraMatch) {
+        const extra = parseInt(extraMatch[1].replace(/,/g, ''), 10);
+        basePrice += isNaN(extra) ? 0 : extra;
+      }
+    }
+    return basePrice * quantity;
+  };
+
+  const totalPrice = calculateTotal();
+
+  const handleWhatsAppOrder = () => {
+    let message = 
+      `Hello ${RESTAURANT_INFO.name}! 👋 I would like to place an order from your online menu:\n\n` +
+      `🍽️ *Dish:* ${dish.name}\n` +
+      `🍗 *Option / Choice:* ${selectedProtein}\n` +
+      `🔢 *Quantity:* ${quantity}\n` +
+      `💰 *Total:* ${formatNaira(totalPrice)}\n`;
+
+    if (specialInstructions.trim()) {
+      message += `📝 *Note:* ${specialInstructions.trim()}\n`;
+    }
+
+    message += `\nPlease confirm if this is available for pickup / delivery right away. Thank you!`;
+
+    const encoded = encodeURIComponent(message);
+    const url = `https://wa.me/${RESTAURANT_INFO.whatsapp.replace('+', '')}?text=${encoded}`;
+    window.open(url, '_blank');
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      
+      {/* Backdrop */}
+      <div 
+        onClick={onClose}
+        className="fixed inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity animate-in fade-in duration-200" 
+      />
+
+      {/* Modal Card */}
+      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700/80 rounded-3xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-200 my-8">
+        
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-slate-950/80 text-slate-300 hover:text-white border border-white/10 hover:bg-slate-900 transition-all cursor-pointer"
+          aria-label="Close modal"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        {/* Top Header Image */}
+        <div className="relative h-64 sm:h-72 w-full bg-slate-950 overflow-hidden">
+          <img
+            src={dish.image || '/food.jpg'}
+            alt={dish.name}
+            className="w-full h-full object-cover filter brightness-95"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/food.jpg';
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+
+          {/* Badges on image */}
+          <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
+            <div>
+              {dish.badge && (
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-black bg-amber-500 text-slate-950 shadow-md mb-2">
+                  {dish.badge}
+                </span>
+              )}
+              <h2 className="text-2xl sm:text-3xl font-black text-white drop-shadow-md">
+                {dish.name}
+              </h2>
+            </div>
+            <div className="text-right">
+              <span className="text-xs text-slate-400 uppercase tracking-wider block font-bold">Price</span>
+              <span className="text-2xl sm:text-3xl font-black text-amber-400">
+                {formatNaira(dish.price)}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal Body */}
+        <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+          
+          {/* Quick Metrics */}
+          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold pb-4 border-b border-slate-800 text-slate-300">
+            <div className="flex items-center gap-1.5 bg-slate-800/60 px-3 py-1.5 rounded-xl border border-slate-700">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+              <span>{dish.rating} ({dish.reviews} reviews)</span>
+            </div>
+
+            <div className="flex items-center gap-1.5 bg-slate-800/60 px-3 py-1.5 rounded-xl border border-slate-700">
+              <Clock className="w-4 h-4 text-amber-400" />
+              <span>Prep: {dish.prepTime}</span>
+            </div>
+
+            {dish.spiceLevel && dish.spiceLevel !== 'None' && (
+              <div className="flex items-center gap-1.5 bg-slate-800/60 px-3 py-1.5 rounded-xl border border-slate-700 text-orange-400">
+                <Flame className="w-4 h-4 fill-orange-400" />
+                <span>{dish.spiceLevel} Spice</span>
+              </div>
+            )}
+          </div>
+
+          {/* Description */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Description</h4>
+            <p className="text-sm text-slate-200 leading-relaxed font-normal">
+              {dish.description}
+            </p>
+          </div>
+
+          {/* Ingredients Breakdown */}
+          {dish.ingredients && dish.ingredients.length > 0 && (
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Key Ingredients</h4>
+              <div className="flex flex-wrap gap-1.5">
+                {dish.ingredients.map((ing, i) => (
+                  <span key={i} className="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">
+                    {ing}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Protein / Portion Customization */}
+          {dish.proteinOptions && dish.proteinOptions.length > 0 && (
+            <div className="space-y-2.5">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Select Protein / Option Choice
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {dish.proteinOptions.map((opt, i) => {
+                  const isSelected = selectedProtein === opt;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedProtein(opt)}
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl border text-xs font-bold transition-all text-left cursor-pointer ${
+                        isSelected
+                          ? 'bg-amber-500/20 border-amber-500 text-amber-300 shadow-sm'
+                          : 'bg-slate-800/60 border-slate-700 text-slate-300 hover:bg-slate-800'
+                      }`}
+                    >
+                      <span className="truncate">{opt}</span>
+                      {isSelected && <Check className="w-4 h-4 text-amber-400 shrink-0 ml-2" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Special Instructions */}
+          <div>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Special Requests (Optional)</h4>
+            <input
+              type="text"
+              value={specialInstructions}
+              onChange={(e) => setSpecialInstructions(e.target.value)}
+              placeholder="e.g. Extra spicy, pack separately, no onions..."
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500"
+            />
+          </div>
+
+          {/* Quantity and Live Total */}
+          <div className="flex items-center justify-between p-4 rounded-2xl bg-slate-950 border border-slate-800">
+            <div>
+              <span className="text-xs text-slate-400 block font-semibold">Quantity</span>
+              <div className="flex items-center gap-3 mt-1">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center font-bold transition-colors cursor-pointer"
+                >
+                  <Minus className="w-3.5 h-3.5" />
+                </button>
+                <span className="text-lg font-black text-white w-6 text-center">{quantity}</span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-white flex items-center justify-center font-bold transition-colors cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="text-right">
+              <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Total Amount</span>
+              <span className="text-2xl font-black text-amber-400 block">
+                {formatNaira(totalPrice)}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Modal Footer Actions */}
+        <div className="p-6 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+          <button
+            onClick={handleWhatsAppOrder}
+            className="flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black text-sm shadow-xl shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span>Order via WhatsApp ({formatNaira(totalPrice)})</span>
+          </button>
+
+          <a
+            href={`tel:${RESTAURANT_INFO.phone}`}
+            className="py-3.5 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-sm border border-slate-700 flex items-center justify-center gap-2 transition-colors"
+          >
+            <Phone className="w-4 h-4 text-amber-400" />
+            <span>Call to Order</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
