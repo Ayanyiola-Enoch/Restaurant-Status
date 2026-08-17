@@ -153,11 +153,51 @@ export function formatDate(date) {
   return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 }
 
+export function parseDishPrice(input, defaultUnit = "") {
+  if (typeof input === "object" && input !== null) {
+    const parsed = parseDishPrice(input.price, input.unit || defaultUnit);
+    return {
+      amount: parsed.amount,
+      unit: input.unit || parsed.unit || defaultUnit,
+    };
+  }
+
+  if (typeof input === "number") {
+    return {
+      amount: isNaN(input) ? 0 : input,
+      unit: defaultUnit,
+    };
+  }
+
+  if (typeof input === "string") {
+    // Look for digits, possibly with commas e.g. "300", "3,500"
+    const match = input.match(/(\d[\d,]*)/);
+    if (match) {
+      const numStr = match[1].replace(/,/g, "");
+      const amount = parseInt(numStr, 10) || 0;
+      // Extract the unit/suffix if any (e.g. everything after the number)
+      const afterMatch = input.slice(match.index + match[0].length).trim();
+      const unit = afterMatch || defaultUnit;
+      return { amount, unit };
+    }
+  }
+
+  return { amount: 0, unit: defaultUnit };
+}
+
 export function formatNaira(amount) {
+  const numericAmount =
+    typeof amount === "number" ? amount : parseDishPrice(amount).amount;
   return new Intl.NumberFormat("en-NG", {
     style: "currency",
     currency: "NGN",
     minimumFractionDigits: 0,
-    maximumFractionDigits: 0
-  }).format(amount);
+    maximumFractionDigits: 0,
+  }).format(numericAmount);
+}
+
+export function formatDishPrice(dishOrPrice, fallbackUnit = "") {
+  const { amount, unit } = parseDishPrice(dishOrPrice, fallbackUnit);
+  const formatted = formatNaira(amount);
+  return unit ? `${formatted} ${unit}` : formatted;
 }

@@ -41,9 +41,9 @@ export const MENU_ITEMS = [
   // --- REGULAR MEALS (The Foundation of Home) ---
   {
     id: "jollof-rice-combo",
-    name: "Smoky Party Jollof Rice",
+    name: "Jollof Rice",
     category: "regular",
-    price: 3000,
+    price: "N300 per spoon",
     rating: 4.9,
     reviews: 142,
     prepTime: "15-20 min",
@@ -51,7 +51,7 @@ export const MENU_ITEMS = [
     isPopular: true,
     isAvailable: true,
     description:
-      "Authentic wood-smoked Nigerian Jollof rice prepared in rich tomato, bell pepper & scotch bonnet puree with aromatic spices.",
+      "Rich, smoky Jollof rice cooked in a flavorful tomato sauce and perfectly spiced served hot, fresh, and absolutely irresistible.",
     ingredients: [
       "Long-grain Parboiled Rice",
       "Blended Tomatoes & Tatashe",
@@ -67,12 +67,12 @@ export const MENU_ITEMS = [
       "Assorted Meat",
       "Fried Turkey (+₦1,000)",
     ],
-    image: "/food.jpg",
+    image: "/jollofrice.png",
     badge: "Bestseller",
   },
   {
     id: "fried-rice-chicken",
-    name: "Special Fried Rice with Crispy Chicken",
+    name: "Fried Rice",
     category: "regular",
     price: 3500,
     rating: 4.8,
@@ -82,7 +82,7 @@ export const MENU_ITEMS = [
     isPopular: true,
     isAvailable: true,
     description:
-      "Wok-tossed seasoned rice packed with sweet corn, carrots, green beans, liver bits, and paired with tender golden fried chicken.",
+      "Savory fried rice stir-fried with fresh vegetables, seasoned to perfection, and bursting with delicious flavor in every bite.",
     ingredients: [
       "Basmati/Parboiled Rice",
       "Sweet Corn",

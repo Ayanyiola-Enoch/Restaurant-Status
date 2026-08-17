@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Star, Clock, Flame, Plus, Minus, MessageCircle, Phone, Check } from 'lucide-react';
 import { RESTAURANT_INFO } from '../data/menuData';
-import { formatNaira } from '../lib/utils';
+import { formatNaira, formatDishPrice, parseDishPrice } from '../lib/utils';
 
 export default function DishModal({ dish, onClose }) {
   if (!dish) return null;
@@ -13,7 +13,7 @@ export default function DishModal({ dish, onClose }) {
   const [specialInstructions, setSpecialInstructions] = useState('');
 
   const calculateTotal = () => {
-    let basePrice = dish.price;
+    let basePrice = parseDishPrice(dish.price).amount;
     if (selectedProtein.includes('+₦')) {
       const extraMatch = selectedProtein.match(/\+₦([\d,]+)/);
       if (extraMatch) {
@@ -94,7 +94,7 @@ export default function DishModal({ dish, onClose }) {
             <div className="text-right shrink-0">
               <span className="text-[10px] sm:text-xs uppercase text-blue-200 font-bold block">Price</span>
               <span className="text-xl sm:text-3xl font-black text-white">
-                {formatNaira(dish.price)}
+                {formatDishPrice(dish)}
               </span>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star, Clock, Flame, Plus, MessageCircle } from 'lucide-react';
-import { formatNaira } from '../lib/utils';
+import { formatNaira, formatDishPrice } from '../lib/utils';
 
 export default function DishCard({ dish, onSelectDish }) {
   const getSpiceBadge = (level) => {
@@ -53,7 +53,7 @@ export default function DishCard({ dish, onSelectDish }) {
         {/* Price Tag Bottom Left */}
         <div className="absolute bottom-3 left-4">
           <span className="text-2xl font-black text-white drop-shadow-md tracking-tight">
-            {formatNaira(dish.price)}
+            {formatDishPrice(dish)}
           </span>
         </div>
 

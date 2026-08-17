@@ -1,5 +1,6 @@
 import React from "react";
 import { RESTAURANT_INFO } from "../data/menuData";
+import midImage from "../assets/midImage.png";
 
 export default function AboutSection() {
   return (
@@ -12,7 +13,7 @@ export default function AboutSection() {
         <div className="lg:col-span-6 relative flex flex-col items-center">
           <div className="relative w-full max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-xl aspect-4/3 sm:aspect-square bg-slate-100">
             <img
-              src="/src/assets/midImage.png"
+              src={midImage}
               alt="Delicious Nigerian Soups and Delicacies"
               className="w-full h-full object-cover filter brightness-105"
             />
@@ -65,7 +66,7 @@ export default function AboutSection() {
             </div>
             <div className="p-3.5 sm:p-4 rounded-2xl bg-[#DCE9F4]/50 border border-[#DCE9F4]">
               <span className="text-xl sm:text-2xl font-black text-[#1E6FBA] block">
-                20+
+                10+
               </span>
               <span className="text-xs text-slate-600 font-semibold">
                 Traditional Dishes
