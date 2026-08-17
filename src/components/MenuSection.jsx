@@ -117,12 +117,12 @@ export default function MenuSection({
           {/* 2. SOUPS & SOLIDS SECTION */}
           <section className="space-y-6 sm:space-y-8">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-3 border-b-2 border-slate-100">
-              <h2 className="text-2xl sm:text-4xl font-black text-[#1E6FBA] tracking-tight">
-                Soups & Solids
-              </h2>
               <span className="text-[10px] sm:text-xs font-black tracking-widest text-slate-400 uppercase">
                 Traditional Hearty Bowls
               </span>
+              <h2 className="text-2xl sm:text-4xl font-black text-[#1E6FBA] tracking-tight">
+                Soups & Solids
+              </h2>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-8">
@@ -167,10 +167,10 @@ export default function MenuSection({
               <div>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#1E6FBA] tracking-tight">
                   Extras
+                  <p className="text-xs text-slate-500 font-medium mt-0.5">
+                    The perfect accompaniments, drinks and proteins
+                  </p>
                 </h2>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">
-                  The perfect accompaniments, drinks and proteins
-                </p>
               </div>
             </div>
 
@@ -326,9 +326,9 @@ function RegularDishCard({ dish, onSelectDish }) {
         </div>
 
         <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span className="text-slate-500 font-medium">
+          {/* <span className="text-slate-500 font-medium">
             Prep: {dish.prepTime}
-          </span>
+          </span> */}
           <button
             onClick={(e) => {
               e.stopPropagation();
