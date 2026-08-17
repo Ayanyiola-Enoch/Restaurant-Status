@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { RESTAURANT_INFO } from "../data/menuData";
+import heroImage from "../assets/HeroImage.png";
 
 export default function HeroSection() {
   return (
@@ -52,12 +53,12 @@ export default function HeroSection() {
         <div className="lg:col-span-6 flex justify-center lg:justify-end mt-4 lg:mt-0">
           <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-none rounded-3xl overflow-hidden shadow-2xl bg-slate-100 aspect-4/3 sm:aspect-square">
             <img
-              src="/src/assets/HeroImage.png"
+              src={heroImage}
               alt="Authentic Nigerian Jollof Rice & Plantain"
               className="w-full h-full object-cover filter brightness-105 hover:scale-105 transition-transform duration-700"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/food.jpg";
+                e.target.src = "/logo.png";
               }}
             />
           </div>

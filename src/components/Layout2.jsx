@@ -1,6 +1,6 @@
 import './index.css'
 import { Route, Link, Routes } from 'react-router-dom';
-import { isOpenThisSunday, getNextSundayDate, formatDate } from "../src/lib/utils"
+import { isOpenThisSunday, getNextSundayDate, formatDate } from "../lib/utils"
 import Welcome from './components/welcome';
 
 const isCurrentlyOpen = () => {

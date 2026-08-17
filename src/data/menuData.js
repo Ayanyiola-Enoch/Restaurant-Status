@@ -1,10 +1,40 @@
 export const MENU_CATEGORIES = [
   { id: "all", name: "All Dishes", icon: "UtensilsCrossed", tag: "Full Menu" },
-  { id: "regular", name: "Regular Meals", subtitle: "The Foundation of Home", icon: "Soup", tag: "Classics" },
-  { id: "specials", name: "Chef's Specials", subtitle: "Signature Creations", icon: "Sparkles", tag: "Premium" },
-  { id: "swallows", name: "Swallows & Soups", subtitle: "Traditional Delicacies", icon: "Flame", tag: "Authentic" },
-  { id: "sides", name: "Sides & Proteins", subtitle: "Crispy & Savory Add-ons", icon: "Drumstick", tag: "Add-ons" },
-  { id: "drinks", name: "Drinks & Refreshments", subtitle: "Chilled & Freshly Made", icon: "GlassWater", tag: "Chilled" },
+  {
+    id: "regular",
+    name: "Regular Meals",
+    subtitle: "The Foundation of Home",
+    icon: "Soup",
+    tag: "Classics",
+  },
+  {
+    id: "specials",
+    name: "Chef's Specials",
+    subtitle: "Signature Creations",
+    icon: "Sparkles",
+    tag: "Premium",
+  },
+  {
+    id: "swallows",
+    name: "Swallows & Soups",
+    subtitle: "Traditional Delicacies",
+    icon: "Flame",
+    tag: "Authentic",
+  },
+  {
+    id: "sides",
+    name: "Sides & Proteins",
+    subtitle: "Crispy & Savory Add-ons",
+    icon: "Drumstick",
+    tag: "Add-ons",
+  },
+  {
+    id: "drinks",
+    name: "Drinks & Refreshments",
+    subtitle: "Chilled & Freshly Made",
+    icon: "GlassWater",
+    tag: "Chilled",
+  },
 ];
 
 export const MENU_ITEMS = [
@@ -20,11 +50,25 @@ export const MENU_ITEMS = [
     spiceLevel: "Medium",
     isPopular: true,
     isAvailable: true,
-    description: "Authentic wood-smoked Nigerian Jollof rice prepared in rich tomato, bell pepper & scotch bonnet puree with aromatic spices.",
-    ingredients: ["Long-grain Parboiled Rice", "Blended Tomatoes & Tatashe", "Scotch Bonnet", "Onions", "Bay Leaf", "Secret Herb Blend"],
-    proteinOptions: ["Fried Chicken", "Peppered Beef", "Grilled Fish", "Assorted Meat", "Fried Turkey (+₦1,000)"],
+    description:
+      "Authentic wood-smoked Nigerian Jollof rice prepared in rich tomato, bell pepper & scotch bonnet puree with aromatic spices.",
+    ingredients: [
+      "Long-grain Parboiled Rice",
+      "Blended Tomatoes & Tatashe",
+      "Scotch Bonnet",
+      "Onions",
+      "Bay Leaf",
+      "Secret Herb Blend",
+    ],
+    proteinOptions: [
+      "Fried Chicken",
+      "Peppered Beef",
+      "Grilled Fish",
+      "Assorted Meat",
+      "Fried Turkey (+₦1,000)",
+    ],
     image: "/food.jpg",
-    badge: "Bestseller"
+    badge: "Bestseller",
   },
   {
     id: "fried-rice-chicken",
@@ -37,11 +81,19 @@ export const MENU_ITEMS = [
     spiceLevel: "Mild",
     isPopular: true,
     isAvailable: true,
-    description: "Wok-tossed seasoned rice packed with sweet corn, carrots, green beans, liver bits, and paired with tender golden fried chicken.",
-    ingredients: ["Basmati/Parboiled Rice", "Sweet Corn", "Carrots", "Liver Chunks", "Spring Onions", "Herb Butter"],
+    description:
+      "Wok-tossed seasoned rice packed with sweet corn, carrots, green beans, liver bits, and paired with tender golden fried chicken.",
+    ingredients: [
+      "Basmati/Parboiled Rice",
+      "Sweet Corn",
+      "Carrots",
+      "Liver Chunks",
+      "Spring Onions",
+      "Herb Butter",
+    ],
     proteinOptions: ["Crispy Fried Chicken", "Peppered Beef", "Grilled Fish"],
     image: "/food.jpg",
-    badge: "Popular"
+    badge: "Popular",
   },
   {
     id: "white-rice-stew",
@@ -54,10 +106,16 @@ export const MENU_ITEMS = [
     spiceLevel: "Hot",
     isPopular: false,
     isAvailable: true,
-    description: "Fluffy steamed white rice served with deep-flavored, slow-simmered spicy Nigerian tomato stew and fried sweet plantain.",
-    ingredients: ["Steamed White Rice", "Slow-cooked Tomato Stew", "Red Bell Peppers", "Fried Plantain"],
+    description:
+      "Fluffy steamed white rice served with deep-flavored, slow-simmered spicy Nigerian tomato stew and fried sweet plantain.",
+    ingredients: [
+      "Steamed White Rice",
+      "Slow-cooked Tomato Stew",
+      "Red Bell Peppers",
+      "Fried Plantain",
+    ],
     proteinOptions: ["Boiled Egg & Beef", "Fried Chicken", "Hard Fish"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "ofada-rice-designer-stew",
@@ -70,11 +128,23 @@ export const MENU_ITEMS = [
     spiceLevel: "Extra Hot",
     isPopular: true,
     isAvailable: true,
-    description: "Unpolished aromatic local Ofada rice paired with authentic green pepper bleaching sauce (Ayamase), boiled eggs, and assorted meat cuts.",
-    ingredients: ["Local Ofada Rice", "Green Bell Pepper", "Locust Beans (Iru)", "Bleached Palm Oil", "Assorted Offals (Shaki, Kpomo, Liver)", "Boiled Egg"],
-    proteinOptions: ["Assorted Meat Combo (Included)", "Extra Fried Fish", "Extra Beef"],
+    description:
+      "Unpolished aromatic local Ofada rice paired with authentic green pepper bleaching sauce (Ayamase), boiled eggs, and assorted meat cuts.",
+    ingredients: [
+      "Local Ofada Rice",
+      "Green Bell Pepper",
+      "Locust Beans (Iru)",
+      "Bleached Palm Oil",
+      "Assorted Offals (Shaki, Kpomo, Liver)",
+      "Boiled Egg",
+    ],
+    proteinOptions: [
+      "Assorted Meat Combo (Included)",
+      "Extra Fried Fish",
+      "Extra Beef",
+    ],
     image: "/food.jpg",
-    badge: "Chef's Recommendation"
+    badge: "Chef's Recommendation",
   },
 
   // --- CHEF'S SPECIALS ---
@@ -89,11 +159,21 @@ export const MENU_ITEMS = [
     spiceLevel: "Extra Hot",
     isPopular: true,
     isAvailable: true,
-    description: "Fiery spicy rice wok-tossed with bite-sized chunks of tender smoked goat meat, habanero peppers, and fresh bell peppers.",
-    ingredients: ["Smoked Goat Meat (Asun)", "Jasmine Rice", "Habanero Peppers", "Onions", "Spring Veggies"],
-    proteinOptions: ["Loaded Goat Meat (Included)", "Extra Peppered Gizzard (+₦1,200)"],
+    description:
+      "Fiery spicy rice wok-tossed with bite-sized chunks of tender smoked goat meat, habanero peppers, and fresh bell peppers.",
+    ingredients: [
+      "Smoked Goat Meat (Asun)",
+      "Jasmine Rice",
+      "Habanero Peppers",
+      "Onions",
+      "Spring Veggies",
+    ],
+    proteinOptions: [
+      "Loaded Goat Meat (Included)",
+      "Extra Peppered Gizzard (+₦1,200)",
+    ],
     image: "/food.jpg",
-    badge: "Spicy Favorite"
+    badge: "Spicy Favorite",
   },
   {
     id: "native-jollof-prawns",
@@ -106,11 +186,22 @@ export const MENU_ITEMS = [
     spiceLevel: "Medium",
     isPopular: true,
     isAvailable: true,
-    description: "Palm-oil infused native rice prepared with dry fish, crayfish, scent leaf, locust beans, and crowned with succulent jumbo prawns.",
-    ingredients: ["Native Palm Oil Rice", "Jumbo Prawns", "Smoked Catfish", "Crayfish", "Scent Leaves (Efirin)", "Locust Beans"],
-    proteinOptions: ["Prawns & Smoked Fish (Included)", "Extra Goat Meat (+₦1,500)"],
+    description:
+      "Palm-oil infused native rice prepared with dry fish, crayfish, scent leaf, locust beans, and crowned with succulent jumbo prawns.",
+    ingredients: [
+      "Native Palm Oil Rice",
+      "Jumbo Prawns",
+      "Smoked Catfish",
+      "Crayfish",
+      "Scent Leaves (Efirin)",
+      "Locust Beans",
+    ],
+    proteinOptions: [
+      "Prawns & Smoked Fish (Included)",
+      "Extra Goat Meat (+₦1,500)",
+    ],
     image: "/food.jpg",
-    badge: "Specialty"
+    badge: "Specialty",
   },
   {
     id: "grilled-catfish-point-kill",
@@ -123,11 +214,18 @@ export const MENU_ITEMS = [
     spiceLevel: "Hot",
     isPopular: true,
     isAvailable: true,
-    description: "Freshly barbecued whole catfish basted in aromatic pepper marinade, served with roasted plantain (Boli) or spicy potato wedges.",
-    ingredients: ["Fresh Catfish", "Suya Spice Rub", "Chili Pepper Glaze", "Roasted Plantain / Chips", "Coleslaw"],
+    description:
+      "Freshly barbecued whole catfish basted in aromatic pepper marinade, served with roasted plantain (Boli) or spicy potato wedges.",
+    ingredients: [
+      "Fresh Catfish",
+      "Suya Spice Rub",
+      "Chili Pepper Glaze",
+      "Roasted Plantain / Chips",
+      "Coleslaw",
+    ],
     proteinOptions: ["Whole Fish (Included)"],
     image: "/food.jpg",
-    badge: "Must Try"
+    badge: "Must Try",
   },
   {
     id: "goat-meat-pepper-soup",
@@ -140,10 +238,17 @@ export const MENU_ITEMS = [
     spiceLevel: "Extra Hot",
     isPopular: false,
     isAvailable: true,
-    description: "Hot, revitalizing aromatic broth infused with authentic Uda, Ehuru spices, fresh herbs, and soft chunks of goat meat.",
-    ingredients: ["Goat Meat Cuts", "Traditional Pepper Soup Herbs", "Calabash Nutmeg", "Uziza Leaves", "Chili"],
+    description:
+      "Hot, revitalizing aromatic broth infused with authentic Uda, Ehuru spices, fresh herbs, and soft chunks of goat meat.",
+    ingredients: [
+      "Goat Meat Cuts",
+      "Traditional Pepper Soup Herbs",
+      "Calabash Nutmeg",
+      "Uziza Leaves",
+      "Chili",
+    ],
     proteinOptions: ["Goat Meat (Included)", "Add Boiled White Yam (+₦800)"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
 
   // --- SWALLOWS & TRADITIONAL SOUPS ---
@@ -158,11 +263,19 @@ export const MENU_ITEMS = [
     spiceLevel: "Medium",
     isPopular: true,
     isAvailable: true,
-    description: "Rich melon seed soup prepared with bitterleaf or spinach, stockfish, dried crayfish, and served with smooth, stretchy pounded yam.",
-    ingredients: ["Ground Melon Seeds", "Spinach / Bitterleaf", "Stockfish", "Crayfish", "Palm Oil", "Fresh Pounded Yam"],
+    description:
+      "Rich melon seed soup prepared with bitterleaf or spinach, stockfish, dried crayfish, and served with smooth, stretchy pounded yam.",
+    ingredients: [
+      "Ground Melon Seeds",
+      "Spinach / Bitterleaf",
+      "Stockfish",
+      "Crayfish",
+      "Palm Oil",
+      "Fresh Pounded Yam",
+    ],
     proteinOptions: ["Assorted Meat", "Tender Goat Meat", "Fried Fish", "Beef"],
     image: "/food.jpg",
-    badge: "Customer Favorite"
+    badge: "Customer Favorite",
   },
   {
     id: "efo-riro-semo",
@@ -175,10 +288,17 @@ export const MENU_ITEMS = [
     spiceLevel: "Hot",
     isPopular: false,
     isAvailable: true,
-    description: "Yoruba-style rich vegetable soup packed with smoked fish, shredded kpomo, dried prawns, locust beans, and smooth Semovita.",
-    ingredients: ["Green Spinach / Shoko", "Smoked Fish", "Kpomo Bits", "Locust Beans", "Semo"],
+    description:
+      "Yoruba-style rich vegetable soup packed with smoked fish, shredded kpomo, dried prawns, locust beans, and smooth Semovita.",
+    ingredients: [
+      "Green Spinach / Shoko",
+      "Smoked Fish",
+      "Kpomo Bits",
+      "Locust Beans",
+      "Semo",
+    ],
     proteinOptions: ["Peppered Beef", "Assorted Meat", "Fried Chicken"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "afang-soup-fufu",
@@ -191,10 +311,18 @@ export const MENU_ITEMS = [
     spiceLevel: "Medium",
     isPopular: true,
     isAvailable: true,
-    description: "Traditional delicacy made from finely shredded Okazi leaves and waterleaf, slow-cooked in rich periwinkle, stockfish, and beef broth.",
-    ingredients: ["Okazi (Afang) Leaves", "Waterleaf", "Periwinkles", "Smoked Fish", "Palm Oil", "Yellow Garri / Fufu"],
+    description:
+      "Traditional delicacy made from finely shredded Okazi leaves and waterleaf, slow-cooked in rich periwinkle, stockfish, and beef broth.",
+    ingredients: [
+      "Okazi (Afang) Leaves",
+      "Waterleaf",
+      "Periwinkles",
+      "Smoked Fish",
+      "Palm Oil",
+      "Yellow Garri / Fufu",
+    ],
     proteinOptions: ["Goat Meat & Kpomo", "Assorted Meat", "Fresh Fish"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
 
   // --- SIDES & PROTEINS ---
@@ -209,10 +337,11 @@ export const MENU_ITEMS = [
     spiceLevel: "None",
     isPopular: true,
     isAvailable: true,
-    description: "Naturally sweet, perfectly caramelized ripe yellow plantain slices fried to golden perfection.",
+    description:
+      "Naturally sweet, perfectly caramelized ripe yellow plantain slices fried to golden perfection.",
     ingredients: ["Ripe Yellow Plantains", "Vegetable Oil", "Pinch of Salt"],
     proteinOptions: ["Side Portion (No Protein)"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "peppered-beef-suya",
@@ -225,10 +354,16 @@ export const MENU_ITEMS = [
     spiceLevel: "Hot",
     isPopular: true,
     isAvailable: true,
-    description: "Tender beef chunks fried and simmered in a coarse, savory scotch bonnet, onion & bell pepper sauce.",
-    ingredients: ["Prime Beef", "Scotch Bonnet", "Sweet Onions", "Seasoning Herbs"],
+    description:
+      "Tender beef chunks fried and simmered in a coarse, savory scotch bonnet, onion & bell pepper sauce.",
+    ingredients: [
+      "Prime Beef",
+      "Scotch Bonnet",
+      "Sweet Onions",
+      "Seasoning Herbs",
+    ],
     proteinOptions: ["Beef Portion"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "crispy-fried-chicken",
@@ -241,10 +376,11 @@ export const MENU_ITEMS = [
     spiceLevel: "Mild",
     isPopular: false,
     isAvailable: true,
-    description: "Juicy chicken marinated in ginger, garlic, thyme, and spices, fried to a crunchy golden crust.",
+    description:
+      "Juicy chicken marinated in ginger, garlic, thyme, and spices, fried to a crunchy golden crust.",
     ingredients: ["Chicken Quarter", "Garlic & Ginger Marinade", "Herb Crust"],
     proteinOptions: ["Chicken Quarter"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "moi-moi-elewe",
@@ -257,10 +393,17 @@ export const MENU_ITEMS = [
     spiceLevel: "Mild",
     isPopular: false,
     isAvailable: true,
-    description: "Traditional steamed bean pudding wrapped in fresh Thaumatococcus (Ewe Eeran) leaves, studded with boiled egg and fish flakes.",
-    ingredients: ["Black-Eyed Peas", "Red Peppers", "Boiled Egg", "Smoked Fish Flakes", "Banana Leaves"],
+    description:
+      "Traditional steamed bean pudding wrapped in fresh Thaumatococcus (Ewe Eeran) leaves, studded with boiled egg and fish flakes.",
+    ingredients: [
+      "Black-Eyed Peas",
+      "Red Peppers",
+      "Boiled Egg",
+      "Smoked Fish Flakes",
+      "Banana Leaves",
+    ],
     proteinOptions: ["Egg & Fish (Included)"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
 
   // --- DRINKS & REFRESHMENTS ---
@@ -275,11 +418,18 @@ export const MENU_ITEMS = [
     spiceLevel: "None",
     isPopular: true,
     isAvailable: true,
-    description: "100% natural cold-pressed hibiscus beverage infused with ginger, cloves, pineapple juice, and sweet natural dates.",
-    ingredients: ["Hibiscus Flowers", "Fresh Pineapple", "Ginger", "Cloves", "Dates"],
+    description:
+      "100% natural cold-pressed hibiscus beverage infused with ginger, cloves, pineapple juice, and sweet natural dates.",
+    ingredients: [
+      "Hibiscus Flowers",
+      "Fresh Pineapple",
+      "Ginger",
+      "Cloves",
+      "Dates",
+    ],
     proteinOptions: ["Bottle 500ml"],
     image: "/food.jpg",
-    badge: "100% Natural"
+    badge: "100% Natural",
   },
   {
     id: "fresh-smoothie",
@@ -292,10 +442,11 @@ export const MENU_ITEMS = [
     spiceLevel: "None",
     isPopular: false,
     isAvailable: true,
-    description: "Thick, refreshing blend of fresh mangoes, sweet pineapples, bananas, and a splash of coconut milk.",
+    description:
+      "Thick, refreshing blend of fresh mangoes, sweet pineapples, bananas, and a splash of coconut milk.",
     ingredients: ["Ripe Mango", "Pineapple", "Banana", "Coconut Milk", "Honey"],
     proteinOptions: ["Glass 400ml"],
-    image: "/food.jpg"
+    image: "/food.jpg",
   },
   {
     id: "chilled-soda-malt",
@@ -308,11 +459,12 @@ export const MENU_ITEMS = [
     spiceLevel: "None",
     isPopular: false,
     isAvailable: true,
-    description: "Ice-cold Coca-Cola, Fanta, Sprite, or Malta Guinness served chilled.",
+    description:
+      "Ice-cold Coca-Cola, Fanta, Sprite, or Malta Guinness served chilled.",
     ingredients: ["Carbonated Beverage", "Ice"],
     proteinOptions: ["Can 330ml / Bottle 350ml"],
-    image: "/food.jpg"
-  }
+    image: "/food.jpg",
+  },
 ];
 
 export const RESTAURANT_INFO = {
@@ -321,22 +473,22 @@ export const RESTAURANT_INFO = {
   phone: "+2348069215338",
   phoneDisplay: "0806-9215-338",
   whatsapp: "+2348069215338",
-  email: "contact@ggrestaurant.ng",
-  address: "14 Heritage Way, Commercial District",
-  city: "Lagos, Nigeria",
+  email: "[EMAIL_ADDRESS]",
+  address: "Inside Bowen Teaching Hospital, Ogbomoso",
+  city: "Ogbomoso, Nigeria",
   openingHours: {
     weekdays: "8:00 AM - 8:00 PM",
     saturday: "8:00 AM - 8:00 PM",
-    sunday: "8:00 AM - 8:00 PM (Alternating Weeks)"
+    sunday: "8:00 AM - 8:00 PM (Alternating Weeks)",
   },
   whatsappMessage: (dishName, protein, qty, total) => {
     return encodeURIComponent(
       `Hello G&G Restaurant! 👋 I'd like to place an order from your online menu:\n\n` +
-      `🍽️ Dish: ${dishName}\n` +
-      `🍗 Protein/Option: ${protein}\n` +
-      `🔢 Quantity: ${qty}\n` +
-      `💰 Total: ₦${total.toLocaleString()}\n\n` +
-      `Please let me know how soon it will be ready for pickup / delivery. Thank you!`
+        `🍽️ Dish: ${dishName}\n` +
+        `🍗 Protein/Option: ${protein}\n` +
+        `🔢 Quantity: ${qty}\n` +
+        `💰 Total: ₦${total.toLocaleString()}\n\n` +
+        `Please let me know how soon it will be ready for pickup / delivery. Thank you!`,
     );
-  }
+  },
 };
