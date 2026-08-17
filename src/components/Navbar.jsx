@@ -44,8 +44,11 @@ export default function Navbar({ status, onOpenSchedule }) {
             <a href="#about" className="hover:text-[#1E6FBA] transition-colors">
               About Us
             </a>
-            <a href="#hours" className="hover:text-[#1E6FBA] transition-colors">
-              Hours & Status
+            <a
+              href="#status"
+              className="hover:text-[#1E6FBA] transition-colors"
+            >
+              Status
             </a>
             <a href="#menu" className="hover:text-[#1E6FBA] transition-colors">
               Menu
@@ -122,6 +125,7 @@ export default function Navbar({ status, onOpenSchedule }) {
               <span
                 className={`w-2 h-2 rounded-full ${status.isOpen ? "bg-emerald-500" : "bg-rose-500"} animate-pulse`}
               />
+
               <span>{status.statusText}</span>
             </div>
           </div>
@@ -142,7 +146,7 @@ export default function Navbar({ status, onOpenSchedule }) {
               About G&G
             </a>
             <a
-              href="#hours"
+              href="#status"
               onClick={() => setMobileMenuOpen(false)}
               className="px-3 py-2 rounded-lg hover:bg-slate-50"
             >

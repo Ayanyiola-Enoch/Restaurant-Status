@@ -137,7 +137,7 @@ export default function MenuSection({
           </section>
 
           {/* 3. CHEF'S SPECIALS SECTION */}
-          {specialDishes.length > 0 && (
+          {/* {specialDishes.length > 0 && (
             <section className="space-y-6 sm:space-y-8">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 pb-3 border-b-2 border-slate-100">
                 <h2 className="text-2xl sm:text-4xl font-black text-[#1E6FBA] tracking-tight flex items-center gap-2">
@@ -159,7 +159,7 @@ export default function MenuSection({
                 ))}
               </div>
             </section>
-          )}
+          )} */}
 
           {/* 4. EXTRAS SECTION */}
           <section className="space-y-6 sm:space-y-8">
@@ -167,8 +167,9 @@ export default function MenuSection({
               <div>
                 <h2 className="text-2xl sm:text-4xl font-black text-[#1E6FBA] tracking-tight">
                   Extras
-                  <p className="text-xs text-slate-500 font-medium mt-0.5">
-                    The perfect accompaniments, drinks and proteins
+                  <p className="text-xs text-slate-500 font-medium mt-2.5">
+                    The rhythm of the city, captured in small plates and big
+                    flavors.
                   </p>
                 </h2>
               </div>
@@ -181,16 +182,16 @@ export default function MenuSection({
                 className="md:col-span-6 group relative rounded-3xl overflow-hidden shadow-xl min-h-[300px] sm:min-h-[380px] bg-slate-900 cursor-pointer"
               >
                 <img
-                  src="/food.jpg"
+                  src="/src/assets/chicken.jpg"
                   alt="Crispy Chicken"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
+                  className="w-full h-[448px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
                 <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between">
                   <div>
                     <h3 className="text-xl sm:text-2xl font-black text-white">
-                      Crispy Chicken Quarter
+                      Chicken
                     </h3>
                     <p className="text-xs text-slate-300 max-w-xs mt-0.5">
                       Deep seasoned and golden fried
