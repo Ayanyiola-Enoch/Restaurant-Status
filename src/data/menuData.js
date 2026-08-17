@@ -171,7 +171,7 @@ export const MENU_ITEMS = [
       "Loaded Goat Meat (Included)",
       "Extra Peppered Gizzard (+₦1,200)",
     ],
-    image: "/food.jpg",
+    image: "/src/assets/friedrice.png",
     badge: "Spicy Favorite",
   },
   {
@@ -253,7 +253,7 @@ export const MENU_ITEMS = [
   // --- SWALLOWS & TRADITIONAL SOUPS ---
   {
     id: "egusi-pounded-yam",
-    name: "Special Egusi Soup with Pounded Yam",
+    name: "Egusi Soup",
     category: "swallows",
     price: 3800,
     rating: 4.9,
@@ -263,7 +263,7 @@ export const MENU_ITEMS = [
     isPopular: true,
     isAvailable: true,
     description:
-      "Rich melon seed soup prepared with bitterleaf or spinach, stockfish, dried crayfish, and served with smooth, stretchy pounded yam.",
+      "Rich and hearty egusi soup made with ground melon seeds, infused with bold spices and tender meats deeply satisfying and full of authentic flavor.",
     ingredients: [
       "Ground Melon Seeds",
       "Spinach / Bitterleaf",
@@ -273,12 +273,12 @@ export const MENU_ITEMS = [
       "Fresh Pounded Yam",
     ],
     proteinOptions: ["Assorted Meat", "Tender Goat Meat", "Fried Fish", "Beef"],
-    image: "/food.jpg",
+    image: "/src/assets/egusi.png",
     badge: "Customer Favorite",
   },
   {
     id: "efo-riro-semo",
-    name: "Rich Efo Riro with Semovita",
+    name: "Efo Riro Soup",
     category: "swallows",
     price: 3600,
     rating: 4.8,
@@ -297,7 +297,7 @@ export const MENU_ITEMS = [
       "Semo",
     ],
     proteinOptions: ["Peppered Beef", "Assorted Meat", "Fried Chicken"],
-    image: "/food.jpg",
+    image: "/src/assets/Eforiro.png",
   },
   {
     id: "afang-soup-fufu",
