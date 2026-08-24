@@ -179,12 +179,12 @@ export default function MenuSection({
               {/* Featured Tall Card on Left (Desktop: 6 cols, Mobile: full width) */}
               <div
                 onClick={() => onSelectDish(extraDishes[0] || dishes[0])}
-                className="md:col-span-6 group relative rounded-3xl overflow-hidden shadow-xl min-h-[300px] sm:min-h-[380px] bg-slate-900 cursor-pointer"
+                className="md:col-span-6 group relative rounded-3xl overflow-hidden shadow-xl min-h-[400px] sm:min-h-[380px] bg-slate-900 cursor-pointer"
               >
                 <img
                   src="/src/assets/chicken.jpg"
                   alt="Crispy Chicken"
-                  className="w-full h-[448px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
+                  className="w-full h-[548px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
@@ -194,7 +194,7 @@ export default function MenuSection({
                       Chicken
                     </h3>
                     <p className="text-xs text-slate-300 max-w-xs mt-0.5">
-                      Deep seasoned and golden fried
+                      Deep seasoned and goldengit add fried
                     </p>
                   </div>
                   <span className="text-lg sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
@@ -204,29 +204,29 @@ export default function MenuSection({
               </div>
 
               {/* Right Side Cards (Desktop: 6 cols, Mobile: full width grid) */}
-              <div className="md:col-span-6 grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="md:col-span-6 grid grid-cols-2 gap-2 sm:gap-6">
                 {/* Wara / Beef Card (Full width on mobile grid) */}
                 <div
                   onClick={() => onSelectDish(extraDishes[1] || dishes[1])}
-                  className="col-span-2 group relative rounded-3xl overflow-hidden shadow-md h-36 sm:h-44 bg-slate-900 cursor-pointer"
+                  className="col-span-2 group relative rounded-3xl overflow-hidden shadow-md h-86 sm:h-44 bg-slate-900 cursor-pointer"
                 >
                   <img
-                    src="/food.jpg"
-                    alt="Peppered Beef"
+                    src="/src/assets/cheese.png"
+                    alt="Cheese (Wara)"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
                   <div className="absolute bottom-3.5 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex items-center justify-between">
                     <div>
                       <h4 className="text-base sm:text-lg font-black text-white">
-                        Spicy Peppered Beef
+                        Cheese (Wara)
                       </h4>
                       <p className="text-[10px] sm:text-[11px] text-slate-300">
-                        Tender beef cuts in scotch bonnet glaze
+                        Puffy bean cakes, fried to golden perfection.
                       </p>
                     </div>
-                    <span className="text-sm sm:text-base font-black text-amber-400">
-                      ₦2,500
+                    <span className="text-md sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
+                      ₦3,500
                     </span>
                   </div>
                 </div>
