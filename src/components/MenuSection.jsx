@@ -179,7 +179,10 @@ export default function MenuSection({
               {/* Left: Featured Tall Chicken Card — spans both rows on desktop */}
               <div
                 onClick={() => {
-                  const chicken = extraDishes.find((d) => d.id === "crispy-fried-chicken") || extraDishes[0] || dishes[0];
+                  const chicken =
+                    extraDishes.find((d) => d.id === "crispy-fried-chicken") ||
+                    extraDishes[0] ||
+                    dishes[0];
                   onSelectDish(chicken);
                 }}
                 className="md:row-span-2 group relative rounded-3xl overflow-hidden shadow-xl bg-slate-900 cursor-pointer min-h-[380px] md:min-h-0"
@@ -237,18 +240,21 @@ export default function MenuSection({
                 {/* Dodo Card */}
                 <div
                   onClick={() => {
-                    const dodo = extraDishes.find((d) => d.id === "fried-plantain-dodo") || extraDishes[0] || dishes[0];
+                    const dodo =
+                      extraDishes.find((d) => d.id === "fried-plantain-dodo") ||
+                      extraDishes[0] ||
+                      dishes[0];
                     onSelectDish(dodo);
                   }}
                   className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
-                    src="/food.jpg"
+                    src="/src/assets/dodo.png"
                     alt="Golden Fried Dodo"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
-                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
+                  <div className="absolute bottom-5.5 left-3 right-3 flex items-center justify-between">
                     <span className="text-xs sm:text-sm font-black text-white">
                       Dodo
                     </span>
@@ -261,18 +267,21 @@ export default function MenuSection({
                 {/* Fish Card */}
                 <div
                   onClick={() => {
-                    const beef = extraDishes.find((d) => d.id === "peppered-beef-suya") || extraDishes[2] || dishes[2];
+                    const beef =
+                      extraDishes.find((d) => d.id === "peppered-beef-suya") ||
+                      extraDishes[2] ||
+                      dishes[2];
                     onSelectDish(beef);
                   }}
                   className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
-                    src="/food.jpg"
+                    src="/src/assets/fish.png"
                     alt="Grilled Fish"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
-                  <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
+                  <div className="absolute bottom-5.5 left-3 right-3 flex items-center justify-between">
                     <span className="text-xs sm:text-sm font-black text-white">
                       Fish
                     </span>
