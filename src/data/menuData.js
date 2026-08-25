@@ -7,13 +7,13 @@ export const MENU_CATEGORIES = [
     icon: "Soup",
     tag: "Classics",
   },
-  {
-    id: "specials",
-    name: "Chef's Specials",
-    subtitle: "Signature Creations",
-    icon: "Sparkles",
-    tag: "Premium",
-  },
+  // {
+  //   id: "specials",
+  //   name: "Chef's Specials",
+  //   subtitle: "Signature Creations",
+  //   icon: "Sparkles",
+  //   tag: "Premium",
+  // },
   {
     id: "swallows",
     name: "Swallows & Soups",
@@ -396,7 +396,7 @@ export const MENU_ITEMS = [
       "Banana Leaves",
     ],
     proteinOptions: ["Egg & Fish (Included)"],
-    image: "/food.jpg",
+    image: "/src/assets/moimoi.png",
   },
 
   // --- DRINKS & REFRESHMENTS ---
@@ -421,7 +421,7 @@ export const MENU_ITEMS = [
       "Dates",
     ],
     proteinOptions: ["Bottle 500ml"],
-    image: "/food.jpg",
+    image: "/src/assets/zobo.png",
     badge: "100% Natural",
   },
   {
