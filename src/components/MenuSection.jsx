@@ -267,11 +267,11 @@ export default function MenuSection({
                 {/* Fish Card */}
                 <div
                   onClick={() => {
-                    const beef =
-                      extraDishes.find((d) => d.id === "peppered-beef-suya") ||
+                    const fish =
+                      extraDishes.find((d) => d.id === "fish") ||
                       extraDishes[2] ||
                       dishes[2];
-                    onSelectDish(beef);
+                    onSelectDish(fish);
                   }}
                   className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
