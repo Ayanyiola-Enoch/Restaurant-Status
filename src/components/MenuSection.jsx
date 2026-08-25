@@ -175,16 +175,19 @@ export default function MenuSection({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
-              {/* Featured Tall Card on Left (Desktop: 6 cols, Mobile: full width) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 md:grid-rows-[1fr_1fr] gap-3 sm:gap-4">
+              {/* Left: Featured Tall Chicken Card — spans both rows on desktop */}
               <div
-                onClick={() => onSelectDish(extraDishes[0] || dishes[0])}
-                className="md:col-span-6 group relative rounded-3xl overflow-hidden shadow-xl min-h-[400px] sm:min-h-[380px] bg-slate-900 cursor-pointer"
+                onClick={() => {
+                  const chicken = extraDishes.find((d) => d.id === "crispy-fried-chicken") || extraDishes[0] || dishes[0];
+                  onSelectDish(chicken);
+                }}
+                className="md:row-span-2 group relative rounded-3xl overflow-hidden shadow-xl bg-slate-900 cursor-pointer min-h-[380px] md:min-h-0"
               >
                 <img
                   src="/src/assets/chicken.jpg"
                   alt="Crispy Chicken"
-                  className="w-full h-[548px] object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
@@ -194,7 +197,7 @@ export default function MenuSection({
                       Chicken
                     </h3>
                     <p className="text-xs text-slate-300 max-w-xs mt-0.5">
-                      Deep seasoned and goldengit add fried
+                      Deep marinated and golden fried to perfection
                     </p>
                   </div>
                   <span className="text-lg sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
@@ -203,38 +206,41 @@ export default function MenuSection({
                 </div>
               </div>
 
-              {/* Right Side Cards (Desktop: 6 cols, Mobile: full width grid) */}
-              <div className="md:col-span-6 grid grid-cols-2 gap-2 sm:gap-6">
-                {/* Wara / Beef Card (Full width on mobile grid) */}
-                <div
-                  onClick={() => onSelectDish(extraDishes[1] || dishes[1])}
-                  className="col-span-2 group relative rounded-3xl overflow-hidden shadow-md h-86 sm:h-44 bg-slate-900 cursor-pointer"
-                >
-                  <img
-                    src="/src/assets/cheese.png"
-                    alt="Cheese (Wara)"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
-                  <div className="absolute bottom-3.5 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex items-center justify-between">
-                    <div>
-                      <h4 className="text-base sm:text-lg font-black text-white">
-                        Cheese (Wara)
-                      </h4>
-                      <p className="text-[10px] sm:text-[11px] text-slate-300">
-                        Puffy bean cakes, fried to golden perfection.
-                      </p>
-                    </div>
-                    <span className="text-md sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
-                      ₦3,500
-                    </span>
+              {/* Top Right: Cheese (Wara) Card */}
+              <div
+                onClick={() => onSelectDish(extraDishes[1] || dishes[1])}
+                className="group relative rounded-3xl overflow-hidden shadow-md bg-slate-900 cursor-pointer h-64 sm:h-72 md:h-full"
+              >
+                <img
+                  src="/src/assets/cheese.png"
+                  alt="Cheese (Wara)"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 sm:bottom-4 sm:left-5 sm:right-5 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-base sm:text-lg font-black text-white">
+                      Cheese (Wara)
+                    </h4>
+                    <p className="text-[10px] sm:text-[11px] text-slate-300">
+                      Puffy bean cakes, fried to golden perfection.
+                    </p>
                   </div>
+                  <span className="text-md sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
+                    ₦3,500
+                  </span>
                 </div>
+              </div>
 
+              {/* Bottom Right: Dodo + Fish side-by-side */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 h-full">
                 {/* Dodo Card */}
                 <div
-                  onClick={() => onSelectDish(extraDishes[0] || dishes[0])}
-                  className="group relative rounded-2xl overflow-hidden shadow-xs h-32 sm:h-40 bg-slate-900 cursor-pointer"
+                  onClick={() => {
+                    const dodo = extraDishes.find((d) => d.id === "fried-plantain-dodo") || extraDishes[0] || dishes[0];
+                    onSelectDish(dodo);
+                  }}
+                  className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
                     src="/food.jpg"
@@ -252,28 +258,26 @@ export default function MenuSection({
                   </div>
                 </div>
 
-                {/* Zobo / Drink Card */}
+                {/* Fish Card */}
                 <div
-                  onClick={() =>
-                    onSelectDish(
-                      extraDishes.find((d) => d.category === "drinks") ||
-                        dishes[2],
-                    )
-                  }
-                  className="group relative rounded-2xl overflow-hidden shadow-xs h-32 sm:h-40 bg-slate-900 cursor-pointer"
+                  onClick={() => {
+                    const beef = extraDishes.find((d) => d.id === "peppered-beef-suya") || extraDishes[2] || dishes[2];
+                    onSelectDish(beef);
+                  }}
+                  className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
                     src="/food.jpg"
-                    alt="Chilled Zobo Drink"
+                    alt="Grilled Fish"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
                   <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
                     <span className="text-xs sm:text-sm font-black text-white">
-                      Chilled Zobo
+                      Fish
                     </span>
                     <span className="text-xs font-black text-amber-400">
-                      ₦800
+                      ₦2,500
                     </span>
                   </div>
                 </div>
