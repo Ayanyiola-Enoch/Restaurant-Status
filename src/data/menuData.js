@@ -66,7 +66,7 @@ export const MENU_ITEMS = [
       "Assorted Meat",
       "Fried Turkey (+₦1,000)",
     ],
-    image: "/src/assets/jollofrice.png",
+    image: "/assets/jollofrice.png",
     badge: "Bestseller",
   },
   {
@@ -91,7 +91,7 @@ export const MENU_ITEMS = [
       "Herb Butter",
     ],
     proteinOptions: ["Crispy Fried Chicken", "Peppered Beef", "Grilled Fish"],
-    image: "/src/assets/friedrice.png",
+    image: "/assets/friedrice.png",
     badge: "Popular",
   },
   {
@@ -114,7 +114,7 @@ export const MENU_ITEMS = [
       "Fried Plantain",
     ],
     proteinOptions: ["Boiled Egg & Beef", "Fried Chicken", "Fish"],
-    image: "/src/assets/whiterice.png",
+    image: "/assets/whiterice.png",
   },
   // {
   //   id: "ofada-rice-designer-stew",
@@ -171,7 +171,7 @@ export const MENU_ITEMS = [
       "Loaded Goat Meat (Included)",
       "Extra Peppered Gizzard (+₦1,200)",
     ],
-    image: "/src/assets/friedrice.png",
+    image: "/assets/friedrice.png",
     badge: "Spicy Favorite",
   },
   {
@@ -199,7 +199,7 @@ export const MENU_ITEMS = [
       "Prawns & Smoked Fish (Included)",
       "Extra Goat Meat (+₦1,500)",
     ],
-    image: "/food.jpg",
+    image: "/assets/food.jpg",
     badge: "Specialty",
   },
   {
@@ -223,7 +223,7 @@ export const MENU_ITEMS = [
       "Coleslaw",
     ],
     proteinOptions: ["Whole Fish (Included)"],
-    image: "/food.jpg",
+    image: "/assets/food.jpg",
     badge: "Must Try",
   },
   {
@@ -247,7 +247,7 @@ export const MENU_ITEMS = [
       "Chili",
     ],
     proteinOptions: ["Goat Meat (Included)", "Add Boiled White Yam (+₦800)"],
-    image: "/food.jpg",
+    image: "/assets/food.jpg",
   },
 
   // --- SWALLOWS & TRADITIONAL SOUPS ---
@@ -273,7 +273,7 @@ export const MENU_ITEMS = [
       "Fresh Pounded Yam",
     ],
     proteinOptions: ["Assorted Meat", "Tender Goat Meat", "Fried Fish", "Beef"],
-    image: "/src/assets/egusi.png",
+    image: "/assets/Egusi.png",
     badge: "Customer Favorite",
   },
   {
@@ -297,7 +297,7 @@ export const MENU_ITEMS = [
       "Semo",
     ],
     proteinOptions: ["Peppered Beef", "Assorted Meat", "Fried Chicken"],
-    image: "/src/assets/Eforiro.png",
+    image: "/assets/Eforiro.png",
   },
   // {
   //   id: "afang-soup-fufu",
@@ -326,6 +326,23 @@ export const MENU_ITEMS = [
 
   // --- SIDES & PROTEINS ---
   {
+    id: "cheese-wara",
+    name: "Cheese (Wara)",
+    category: "sides",
+    price: 3500,
+    rating: 4.9,
+    reviews: 64,
+    prepTime: "10 min",
+    spiceLevel: "Mild",
+    isPopular: true,
+    isAvailable: true,
+    description:
+      "Freshly prepared, golden fried Nigerian cottage cheese (Wara), delicately spiced and served hot.",
+    ingredients: ["Fresh Milk Curds (Wara)", "Pepper Sauce", "Vegetable Oil", "Spices"],
+    proteinOptions: ["Standard Portion", "Extra Pepper Sauce (+₦500)"],
+    image: "/assets/cheese.png",
+  },
+  {
     id: "fried-plantain-dodo",
     name: "Fried Plantain (Dodo)",
     category: "sides",
@@ -340,7 +357,7 @@ export const MENU_ITEMS = [
       "Naturally sweet, perfectly caramelized ripe yellow plantain slices fried to golden perfection.",
     ingredients: ["Ripe Yellow Plantains", "Vegetable Oil", "Pinch of Salt"],
     proteinOptions: ["Side Portion (No Protein)"],
-    image: "/src/assets/dodo.png",
+    image: "/assets/dodo.png",
   },
   {
     id: "fish",
@@ -356,7 +373,7 @@ export const MENU_ITEMS = [
     description: "Fish alongside onion & bell pepper sauce.",
     ingredients: ["Fish", "Scotch Bonnet", "Sweet Onions", "Seasoning Herbs"],
     proteinOptions: ["Beef Portion"],
-    image: "/src/assets/fish.png",
+    image: "/assets/fish.png",
   },
   {
     id: "crispy-fried-chicken",
@@ -373,7 +390,7 @@ export const MENU_ITEMS = [
       "Juicy chicken marinated in ginger, garlic, thyme, and spices, fried to a crunchy golden crust.",
     ingredients: ["Chicken Quarter", "Garlic & Ginger Marinade", "Herb Crust"],
     proteinOptions: ["Chicken Quarter"],
-    image: "/src/assets/chicken.jpg",
+    image: "/assets/chicken.jpg",
   },
   {
     id: "moi-moi-elewe",
@@ -396,7 +413,7 @@ export const MENU_ITEMS = [
       "Banana Leaves",
     ],
     proteinOptions: ["Egg & Fish (Included)"],
-    image: "/src/assets/moimoi.png",
+    image: "/assets/moimoi.png",
   },
 
   // --- DRINKS & REFRESHMENTS ---
@@ -421,7 +438,7 @@ export const MENU_ITEMS = [
       "Dates",
     ],
     proteinOptions: ["Bottle 500ml"],
-    image: "/src/assets/zobo.jpg",
+    image: "/assets/zobo.jpg",
     badge: "100% Natural",
   },
   {
@@ -438,7 +455,7 @@ export const MENU_ITEMS = [
     description: "Thick Yoghurt",
     ingredients: ["Yoghurt"],
     proteinOptions: ["Glass 400ml"],
-    image: "/src/assets/drink.jpg",
+    image: "/assets/drink.jpg",
   },
   {
     id: "chilled-soda",
@@ -454,7 +471,7 @@ export const MENU_ITEMS = [
     description: "Ice-cold , Fanta, Sprite, or Malta Guinness served chilled.",
     ingredients: ["Carbonated Beverage", "Ice"],
     proteinOptions: ["Can 330ml / Bottle 350ml"],
-    image: "/src/assets/soda.jpg",
+    image: "/assets/soda.jpg",
   },
 ];
 

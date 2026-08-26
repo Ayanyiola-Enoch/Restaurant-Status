@@ -13,7 +13,7 @@ export default function HeroStatus({ status, onOpenSchedule }) {
       {/* Background with Ambient Glow and Image Overlay */}
       <div className="absolute inset-0 z-0">
         <div 
-          className="absolute inset-0 bg-[url(/food.jpg)] bg-cover bg-center filter brightness-[0.22] scale-105 transform transition-transform duration-1000"
+          className="absolute inset-0 bg-[url(/assets/food.jpg)] bg-cover bg-center filter brightness-[0.22] scale-105 transform transition-transform duration-1000"
           style={{ willChange: 'transform' }}
         />
         {/* Colorful Gradient overlays */}

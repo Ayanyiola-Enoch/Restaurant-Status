@@ -188,7 +188,7 @@ export default function MenuSection({
                 className="md:row-span-2 group relative rounded-3xl overflow-hidden shadow-xl bg-slate-900 cursor-pointer min-h-[380px] md:min-h-0"
               >
                 <img
-                  src="/src/assets/chicken.jpg"
+                  src="/assets/chicken.jpg"
                   alt="Crispy Chicken"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                 />
@@ -211,11 +211,18 @@ export default function MenuSection({
 
               {/* Top Right: Cheese (Wara) Card */}
               <div
-                onClick={() => onSelectDish(extraDishes[1] || dishes[1])}
+                onClick={() => {
+                  const wara =
+                    extraDishes.find((d) => d.id === "cheese-wara") ||
+                    dishes.find((d) => d.id === "cheese-wara") ||
+                    extraDishes[1] ||
+                    dishes[1];
+                  onSelectDish(wara);
+                }}
                 className="group relative rounded-3xl overflow-hidden shadow-md bg-slate-900 cursor-pointer h-64 sm:h-72 md:h-full"
               >
                 <img
-                  src="/src/assets/cheese.png"
+                  src="/assets/cheese.png"
                   alt="Cheese (Wara)"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter brightness-90"
                 />
@@ -226,7 +233,7 @@ export default function MenuSection({
                       Cheese (Wara)
                     </h4>
                     <p className="text-[10px] sm:text-[11px] text-slate-300">
-                      Puffy bean cakes, fried to golden perfection.
+                      Golden fried local curds, seasoned to perfection.
                     </p>
                   </div>
                   <span className="text-md sm:text-xl font-black text-amber-400 bg-slate-950/80 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-xl border border-white/10">
@@ -249,7 +256,7 @@ export default function MenuSection({
                   className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
-                    src="/src/assets/dodo.png"
+                    src="/assets/dodo.png"
                     alt="Golden Fried Dodo"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                   />
@@ -276,7 +283,7 @@ export default function MenuSection({
                   className="group relative rounded-2xl overflow-hidden shadow-md h-40 sm:h-44 md:h-full bg-slate-900 cursor-pointer"
                 >
                   <img
-                    src="/src/assets/fish.png"
+                    src="/assets/fish.png"
                     alt="Grilled Fish"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
                   />
@@ -313,7 +320,7 @@ function RegularDishCard({ dish, onSelectDish }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/food.jpg";
+            e.target.src = "/assets/food.jpg";
           }}
         />
         {dish.badge && (
@@ -369,12 +376,12 @@ function SoupHorizontalCard({ dish, onSelectDish }) {
     >
       <div className="relative w-full sm:w-44 h-40 sm:h-44 rounded-xl overflow-hidden bg-slate-100 shrink-0">
         <img
-          src={dish.image || "/food.jpg"}
+          src={dish.image || "/assets/food.jpg"}
           alt={dish.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/food.jpg";
+            e.target.src = "/assets/food.jpg";
           }}
         />
       </div>

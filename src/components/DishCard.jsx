@@ -42,12 +42,12 @@ export default function DishCard({ dish, onSelectDish }) {
       {/* Top Image & Badges */}
       <div className="relative h-52 w-full overflow-hidden bg-slate-900">
         <img
-          src={dish.image || "/food.jpg"}
+          src={dish.image || "/assets/food.jpg"}
           alt={dish.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 filter brightness-95"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = "/food.jpg";
+            e.target.src = "/assets/food.jpg";
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />

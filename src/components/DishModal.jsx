@@ -69,12 +69,12 @@ export default function DishModal({ dish, onClose }) {
         {/* Top Header Image */}
         <div className="relative h-48 sm:h-64 w-full bg-slate-100 overflow-hidden shrink-0">
           <img
-            src={dish.image || '/food.jpg'}
+            src={dish.image || '/assets/food.jpg'}
             alt={dish.name}
             className="w-full h-full object-cover"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = '/food.jpg';
+              e.target.src = '/assets/food.jpg';
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

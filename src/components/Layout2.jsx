@@ -42,7 +42,7 @@ function Layout2() {
       {/* BODY */}
       <div className='relative h-screen flex justify-center items-center overflow-hidden'>
         {/* Faded Background */}
-        <div className='absolute inset-0 bg-[url(/food.jpg)] bg-cover bg-center opacity-30 backdrop-blur-md'></div>
+        <div className='absolute inset-0 bg-[url(/assets/food.jpg)] bg-cover bg-center opacity-30 backdrop-blur-md'></div>
 
         {/* Content Section */}
         <div className='relative flex flex-col md:flex-row justify-center items-center gap-5 p-5 h-80 w-full max-w-4xl'>
