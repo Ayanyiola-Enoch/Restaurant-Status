@@ -40,7 +40,7 @@ export default function HeroSection() {
             </a>
 
             <a
-              href="#hours"
+              href="#status"
               className="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-all"
             >
               View Opening Status
