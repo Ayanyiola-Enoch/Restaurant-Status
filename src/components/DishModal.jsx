@@ -45,6 +45,20 @@ export default function DishModal({ dish, onClose }) {
     window.open(url, '_blank');
   };
 
+  const getOptionPrice = (opt) => {
+    const parsed = parseDishPrice(dish.price);
+    let baseAmount = parsed.amount;
+    if (opt.includes('+₦')) {
+      const extraMatch = opt.match(/\+₦([\d,]+)/);
+      if (extraMatch) {
+        const extra = parseInt(extraMatch[1].replace(/,/g, ''), 10);
+        baseAmount += isNaN(extra) ? 0 : extra;
+      }
+    }
+    const formatted = formatNaira(baseAmount);
+    return parsed.unit ? `${formatted} ${parsed.unit}` : formatted;
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       
@@ -154,18 +168,28 @@ export default function DishModal({ dish, onClose }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {dish.proteinOptions.map((opt, i) => {
                   const isSelected = selectedProtein === opt;
+                  const optionPrice = getOptionPrice(opt);
                   return (
                     <button
                       key={i}
                       onClick={() => setSelectedProtein(opt)}
-                      className={`flex items-center justify-between px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl border text-xs font-bold transition-all text-left cursor-pointer ${
+                      className={`flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all text-left cursor-pointer ${
                         isSelected
                           ? 'bg-[#1E6FBA] border-[#1E6FBA] text-white shadow-xs'
                           : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
                       }`}
                     >
-                      <span className="truncate">{opt}</span>
-                      {isSelected && <Check className="w-3.5 h-3.5 text-white shrink-0 ml-1.5" />}
+                      <div className="flex flex-col min-w-0 pr-2">
+                        <span className="text-xs font-bold truncate leading-snug">{opt}</span>
+                        <span
+                          className={`text-[11px] font-medium leading-tight mt-0.5 ${
+                            isSelected ? 'text-blue-100' : 'text-slate-500'
+                          }`}
+                        >
+                          Price: {optionPrice}
+                        </span>
+                      </div>
+                      {isSelected && <Check className="w-4 h-4 text-white shrink-0 ml-1.5" />}
                     </button>
                   );
                 })}
