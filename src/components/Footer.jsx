@@ -94,7 +94,7 @@ export default function Footer() {
                   href={`tel:${RESTAURANT_INFO.phone}`}
                   className="hover:underline flex items-center gap-2"
                 >
-                  {/* <Phone className="w-3.5 h-3.5 fill-white shrink-0" /> */}
+                  <Phone className="w-3.5 h-3.5 shrink-0 text-white" />
                   <span>{RESTAURANT_INFO.phoneDisplay}</span>
                 </a>
               </li>
