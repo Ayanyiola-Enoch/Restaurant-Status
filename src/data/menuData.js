@@ -60,12 +60,12 @@ export const MENU_ITEMS = [
       "Bay Leaf",
     ],
     proteinOptions: [
-      "Fried Chicken",
-      "Peppered Beef",
-      "Grilled Fish",
-      "Assorted Meat",
-      "Boiled Egg",
-      "Fried Turkey (+₦1,000)",
+      { name: "Fried Chicken", price: 1500 },
+      { name: "Peppered Beef", price: 1500 },
+      { name: "Grilled Fish", price: 1800 },
+      { name: "Assorted Meat", price: 1200 },
+      { name: "Boiled Egg", price: 300 },
+      { name: "Fried Turkey", price: 2500 },
     ],
     image: "/assets/jollofrice.png",
     badge: "Bestseller",
@@ -92,10 +92,10 @@ export const MENU_ITEMS = [
       "Herb Butter",
     ],
     proteinOptions: [
-      "Crispy Fried Chicken",
-      "Peppered Beef",
-      "Grilled Fish",
-      "Boiled Egg",
+      { name: "Crispy Fried Chicken", price: 1500 },
+      { name: "Peppered Beef", price: 1500 },
+      { name: "Grilled Fish", price: 1800 },
+      { name: "Boiled Egg", price: 300 },
     ],
     image: "/assets/friedrice.png",
     badge: "Popular",
@@ -119,38 +119,14 @@ export const MENU_ITEMS = [
       "Red Bell Peppers",
       "Fried Plantain",
     ],
-    proteinOptions: ["Boiled Egg & Beef", "Fried Chicken", "Fish"],
+    proteinOptions: [
+      { name: "Boiled Egg", price: 1500 },
+      { name: "Peppered Beef", price: 1500 },
+      { name: "Fried Chicken", price: 1500 },
+      { name: "Fish", price: 1500 },
+    ],
     image: "/assets/whiterice.png",
   },
-  // {
-  //   id: "ofada-rice-designer-stew",
-  //   name: "Royal Ofada Rice & Ayamase",
-  //   category: "regular",
-  //   price: 4000,
-  //   rating: 5.0,
-  //   reviews: 189,
-  //   prepTime: "20 min",
-  //   spiceLevel: "Extra Hot",
-  //   isPopular: true,
-  //   isAvailable: true,
-  //   description:
-  //     "Unpolished aromatic local Ofada rice paired with authentic green pepper bleaching sauce (Ayamase), boiled eggs, and assorted meat cuts.",
-  //   ingredients: [
-  //     "Local Ofada Rice",
-  //     "Green Bell Pepper",
-  //     "Locust Beans (Iru)",
-  //     "Bleached Palm Oil",
-  //     "Assorted Offals (Shaki, Kpomo, Liver)",
-  //     "Boiled Egg",
-  //   ],
-  //   proteinOptions: [
-  //     "Assorted Meat Combo (Included)",
-  //     "Extra Fried Fish",
-  //     "Extra Beef",
-  //   ],
-  //   image: "/food.jpg",
-  //   badge: "Chef's Recommendation",
-  // },
 
   // --- CHEF'S SPECIALS ---
   {
@@ -174,8 +150,8 @@ export const MENU_ITEMS = [
       "Spring Veggies",
     ],
     proteinOptions: [
-      "Loaded Goat Meat (Included)",
-      "Extra Peppered Gizzard (+₦1,200)",
+      { name: "Loaded Goat Meat", price: 2000 },
+      { name: "Extra Peppered Gizzard", price: 1200 },
     ],
     image: "/assets/friedrice.png",
     badge: "Spicy Favorite",
@@ -202,8 +178,8 @@ export const MENU_ITEMS = [
       "Locust Beans",
     ],
     proteinOptions: [
-      "Prawns & Smoked Fish (Included)",
-      "Extra Goat Meat (+₦1,500)",
+      { name: "Prawns & Smoked Fish", price: 0 },
+      { name: "Extra Goat Meat", price: 1500 },
     ],
     image: "/assets/food.jpg",
     badge: "Specialty",
@@ -228,7 +204,7 @@ export const MENU_ITEMS = [
       "Roasted Plantain / Chips",
       "Coleslaw",
     ],
-    proteinOptions: ["Whole Fish (Included)"],
+    proteinOptions: [{ name: "Whole Fish", price: 0 }],
     image: "/assets/food.jpg",
     badge: "Must Try",
   },
@@ -252,7 +228,10 @@ export const MENU_ITEMS = [
       "Uziza Leaves",
       "Chili",
     ],
-    proteinOptions: ["Goat Meat (Included)", "Add Boiled White Yam (+₦800)"],
+    proteinOptions: [
+      { name: "Goat Meat", price: 0 },
+      { name: "Add Boiled White Yam", price: 800 },
+    ],
     image: "/assets/food.jpg",
   },
 
@@ -278,7 +257,12 @@ export const MENU_ITEMS = [
       "Palm Oil",
       "Fresh Pounded Yam",
     ],
-    proteinOptions: ["Assorted Meat", "Tender Goat Meat", "Fried Fish", "Beef"],
+    proteinOptions: [
+      { name: "Assorted Meat", price: 1200 },
+      { name: "Tender Goat Meat", price: 1500 },
+      { name: "Fried Fish", price: 1500 },
+      { name: "Beef", price: 1200 },
+    ],
     image: "/assets/Egusi.png",
     badge: "Customer Favorite",
   },
@@ -302,33 +286,13 @@ export const MENU_ITEMS = [
       "Locust Beans",
       "Semo",
     ],
-    proteinOptions: ["Peppered Beef", "Assorted Meat", "Fried Chicken"],
+    proteinOptions: [
+      { name: "Peppered Beef", price: 1200 },
+      { name: "Assorted Meat", price: 1200 },
+      { name: "Fried Chicken", price: 1500 },
+    ],
     image: "/assets/Eforiro.png",
   },
-  // {
-  //   id: "afang-soup-fufu",
-  //   name: "Calabar Afang Soup with Eba / Fufu",
-  //   category: "swallows",
-  //   price: 4200,
-  //   rating: 4.9,
-  //   reviews: 110,
-  //   prepTime: "20 min",
-  //   spiceLevel: "Medium",
-  //   isPopular: true,
-  //   isAvailable: true,
-  //   description:
-  //     "Traditional delicacy made from finely shredded Okazi leaves and waterleaf, slow-cooked in rich periwinkle, stockfish, and beef broth.",
-  //   ingredients: [
-  //     "Okazi (Afang) Leaves",
-  //     "Waterleaf",
-  //     "Periwinkles",
-  //     "Smoked Fish",
-  //     "Palm Oil",
-  //     "Yellow Garri / Fufu",
-  //   ],
-  //   proteinOptions: ["Goat Meat & Kpomo", "Assorted Meat", "Fresh Fish"],
-  //   image: "/food.jpg",
-  // },
 
   // --- SIDES & PROTEINS ---
   {
@@ -350,7 +314,10 @@ export const MENU_ITEMS = [
       "Vegetable Oil",
       "Spices",
     ],
-    proteinOptions: ["Standard Portion", "Extra Pepper Sauce (+₦500)"],
+    proteinOptions: [
+      { name: "Standard Portion", price: 0 },
+      { name: "Extra Pepper Sauce", price: 500 },
+    ],
     image: "/assets/cheese.png",
   },
   {
@@ -367,7 +334,7 @@ export const MENU_ITEMS = [
     description:
       "Naturally sweet, perfectly caramelized ripe yellow plantain slices fried to golden perfection.",
     ingredients: ["Ripe Yellow Plantains", "Vegetable Oil", "Pinch of Salt"],
-    proteinOptions: ["Side Portion (No Protein)"],
+    proteinOptions: [{ name: "Side Portion (No Protein)", price: 0 }],
     image: "/assets/dodo.png",
   },
   {
@@ -383,7 +350,7 @@ export const MENU_ITEMS = [
     isAvailable: true,
     description: "Fish alongside onion & bell pepper sauce.",
     ingredients: ["Fish", "Scotch Bonnet", "Sweet Onions", "Seasoning Herbs"],
-    proteinOptions: ["Beef Portion"],
+    proteinOptions: [{ name: "Beef Portion", price: 1200 }],
     image: "/assets/fish.png",
   },
   {
@@ -400,7 +367,7 @@ export const MENU_ITEMS = [
     description:
       "Juicy chicken marinated in ginger, garlic, thyme, and spices, fried to a crunchy golden crust.",
     ingredients: ["Chicken Quarter", "Garlic & Ginger Marinade", "Herb Crust"],
-    proteinOptions: ["Chicken Quarter"],
+    proteinOptions: [{ name: "Chicken Quarter", price: 0 }],
     image: "/assets/chicken.jpg",
   },
   {
@@ -423,7 +390,7 @@ export const MENU_ITEMS = [
       "Smoked Fish Flakes",
       "Banana Leaves",
     ],
-    proteinOptions: ["Egg & Fish (Included)"],
+    proteinOptions: [{ name: "Egg & Fish", price: 0 }],
     image: "/assets/moimoi.png",
   },
 
@@ -448,7 +415,7 @@ export const MENU_ITEMS = [
       "Cloves",
       "Dates",
     ],
-    proteinOptions: ["Bottle 500ml"],
+    proteinOptions: [{ name: "Bottle 500ml", price: 0 }],
     image: "/assets/zobo.jpg",
     badge: "100% Natural",
   },
@@ -465,7 +432,7 @@ export const MENU_ITEMS = [
     isAvailable: true,
     description: "Thick Yoghurt",
     ingredients: ["Yoghurt"],
-    proteinOptions: ["Glass 400ml"],
+    proteinOptions: [{ name: "Glass 400ml", price: 0 }],
     image: "/assets/drink.jpg",
   },
   {
@@ -481,7 +448,7 @@ export const MENU_ITEMS = [
     isAvailable: true,
     description: "Ice-cold , Fanta, Sprite, or Malta Guinness served chilled.",
     ingredients: ["Carbonated Beverage", "Ice"],
-    proteinOptions: ["Can 330ml / Bottle 350ml"],
+    proteinOptions: [{ name: "Can 330ml / Bottle 350ml", price: 0 }],
     image: "/assets/soda.jpg",
   },
 ];
@@ -492,7 +459,7 @@ export const RESTAURANT_INFO = {
   phone: "+2348069215338",
   phoneDisplay: "0806-9215-338",
   whatsapp: "+2348069215338",
-  email: "[EMAIL_ADDRESS]",
+  email: "ggrestaurant@gmail.com",
   address: "Inside Bowen Teaching Hospital, Ogbomoso",
   city: "Ogbomoso, Nigeria",
   openingHours: {

@@ -1,36 +1,105 @@
-import React, { useState } from 'react';
-import { X, Star, Clock, Flame, Plus, Minus, MessageCircle, Phone, Check } from 'lucide-react';
-import { RESTAURANT_INFO } from '../data/menuData';
-import { formatNaira, formatDishPrice, parseDishPrice } from '../lib/utils';
+import React, { useState } from "react";
+import {
+  X,
+  Star,
+  Clock,
+  Flame,
+  Plus,
+  Minus,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
+import { RESTAURANT_INFO } from "../data/menuData";
+import { formatNaira, formatDishPrice, parseDishPrice } from "../lib/utils";
+
+function normalizeOption(opt) {
+  if (typeof opt === "object" && opt !== null) {
+    return {
+      name: opt.name || "",
+      price: typeof opt.price === "number" ? opt.price : 0,
+    };
+  }
+  if (typeof opt === "string") {
+    if (opt.includes("+₦")) {
+      const match = opt.match(/\+₦([\d,]+)/);
+      if (match) {
+        const extra = parseInt(match[1].replace(/,/g, ""), 10);
+        const nameWithoutPrice = opt.replace(/\s*\(\+₦[\d,]+\)/, "").trim();
+        return { name: nameWithoutPrice, price: isNaN(extra) ? 0 : extra };
+      }
+    }
+    return { name: opt, price: 0 };
+  }
+  return { name: String(opt), price: 0 };
+}
 
 export default function DishModal({ dish, onClose }) {
   if (!dish) return null;
 
   const [quantity, setQuantity] = useState(1);
-  const [selectedProtein, setSelectedProtein] = useState(
-    dish.proteinOptions && dish.proteinOptions.length > 0 ? dish.proteinOptions[0] : 'Standard Portion'
-  );
-  const [specialInstructions, setSpecialInstructions] = useState('');
+  const [optionQuantities, setOptionQuantities] = useState(() => {
+    const initial = {};
+    if (dish.proteinOptions && dish.proteinOptions.length > 0) {
+      dish.proteinOptions.forEach((opt, index) => {
+        const normalized = normalizeOption(opt);
+        initial[normalized.name] = index === 0 ? 1 : 0;
+      });
+    }
+    return initial;
+  });
+  const [specialInstructions, setSpecialInstructions] = useState("");
 
   const calculateTotal = () => {
-    let basePrice = parseDishPrice(dish.price).amount;
-    if (selectedProtein.includes('+₦')) {
-      const extraMatch = selectedProtein.match(/\+₦([\d,]+)/);
-      if (extraMatch) {
-        const extra = parseInt(extraMatch[1].replace(/,/g, ''), 10);
-        basePrice += isNaN(extra) ? 0 : extra;
-      }
+    const parsed = parseDishPrice(dish.price);
+    const dishBasePrice = parsed.amount;
+
+    let optionsTotal = 0;
+    if (dish.proteinOptions && dish.proteinOptions.length > 0) {
+      dish.proteinOptions.forEach((opt) => {
+        const normalized = normalizeOption(opt);
+        const qty = optionQuantities[normalized.name] || 0;
+        if (qty > 0) {
+          optionsTotal += qty * normalized.price;
+        }
+      });
     }
-    return basePrice * quantity;
+
+    return (dishBasePrice + optionsTotal) * quantity;
   };
 
   const totalPrice = calculateTotal();
 
+  const handleOptionQuantityChange = (optName, delta) => {
+    setOptionQuantities((prev) => {
+      const current = prev[optName] || 0;
+      const next = Math.max(0, current + delta);
+      return { ...prev, [optName]: next };
+    });
+  };
+
   const handleWhatsAppOrder = () => {
-    let message = 
+    let optionsSummary = "";
+    if (dish.proteinOptions && dish.proteinOptions.length > 0) {
+      const selectedList = dish.proteinOptions
+        .map(normalizeOption)
+        .filter((opt) => (optionQuantities[opt.name] || 0) > 0)
+        .map(
+          (opt) =>
+            `${optionQuantities[opt.name]}x ${opt.name}${
+              opt.price > 0 ? ` (${formatNaira(opt.price)})` : ""
+            }`,
+        );
+
+      optionsSummary =
+        selectedList.length > 0 ? selectedList.join(", ") : "Standard Portion";
+    } else {
+      optionsSummary = "Standard Portion";
+    }
+
+    let message =
       `Hello ${RESTAURANT_INFO.name}! 👋 I would like to place an order from your online menu:\n\n` +
       `🍽️ *Dish:* ${dish.name}\n` +
-      `🍗 *Option / Choice:* ${selectedProtein}\n` +
+      `🍗 *Option / Choice:* ${optionsSummary}\n` +
       `🔢 *Quantity:* ${quantity}\n` +
       `💰 *Total:* ${formatNaira(totalPrice)}\n`;
 
@@ -41,36 +110,27 @@ export default function DishModal({ dish, onClose }) {
     message += `\nPlease confirm if this is available for pickup / delivery. Thank you!`;
 
     const encoded = encodeURIComponent(message);
-    const url = `https://wa.me/${RESTAURANT_INFO.whatsapp.replace('+', '')}?text=${encoded}`;
-    window.open(url, '_blank');
+    const url = `https://wa.me/${RESTAURANT_INFO.whatsapp.replace("+", "")}?text=${encoded}`;
+    window.open(url, "_blank");
   };
 
-  const getOptionPrice = (opt) => {
-    const parsed = parseDishPrice(dish.price);
-    let baseAmount = parsed.amount;
-    if (opt.includes('+₦')) {
-      const extraMatch = opt.match(/\+₦([\d,]+)/);
-      if (extraMatch) {
-        const extra = parseInt(extraMatch[1].replace(/,/g, ''), 10);
-        baseAmount += isNaN(extra) ? 0 : extra;
-      }
+  const getOptionPriceDisplay = (normOpt) => {
+    if (normOpt.price === 0) {
+      return "Included";
     }
-    const formatted = formatNaira(baseAmount);
-    return parsed.unit ? `${formatted} ${parsed.unit}` : formatted;
+    return formatNaira(normOpt.price);
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-      
       {/* Backdrop */}
-      <div 
+      <div
         onClick={onClose}
-        className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200" 
+        className="fixed inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
       />
 
       {/* Modal Card */}
       <div className="relative w-full max-w-xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden z-10 animate-in zoom-in-95 duration-200 my-4 sm:my-8 max-h-[92vh] flex flex-col">
-        
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -83,12 +143,12 @@ export default function DishModal({ dish, onClose }) {
         {/* Top Header Image */}
         <div className="relative h-48 sm:h-64 w-full bg-slate-100 overflow-hidden shrink-0">
           <img
-            src={dish.image || '/assets/food.jpg'}
+            src={dish.image || "/assets/food.jpg"}
             alt={dish.name}
             className="w-full h-full object-cover"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src = '/assets/food.jpg';
+              e.target.src = "/assets/food.jpg";
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -106,7 +166,9 @@ export default function DishModal({ dish, onClose }) {
               </h2>
             </div>
             <div className="text-right shrink-0">
-              <span className="text-[10px] sm:text-xs uppercase text-blue-200 font-bold block">Price</span>
+              <span className="text-[10px] sm:text-xs uppercase text-blue-200 font-bold block">
+                Base Price
+              </span>
               <span className="text-xl sm:text-3xl font-black text-white">
                 {formatDishPrice(dish)}
               </span>
@@ -116,12 +178,13 @@ export default function DishModal({ dish, onClose }) {
 
         {/* Modal Body (Scrollable) */}
         <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
-          
           {/* Quick Metrics */}
           <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold pb-3 sm:pb-4 border-b border-slate-100 text-slate-600">
             <div className="flex items-center gap-1 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
               <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-              <span>{dish.rating} ({dish.reviews})</span>
+              <span>
+                {dish.rating} ({dish.reviews})
+              </span>
             </div>
 
             <div className="flex items-center gap-1 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
@@ -129,7 +192,7 @@ export default function DishModal({ dish, onClose }) {
               <span>Prep: {dish.prepTime}</span>
             </div>
 
-            {dish.spiceLevel && dish.spiceLevel !== 'None' && (
+            {dish.spiceLevel && dish.spiceLevel !== "None" && (
               <div className="flex items-center gap-1 bg-rose-50 px-2.5 py-1 rounded-lg border border-rose-200 text-rose-700">
                 <Flame className="w-3.5 h-3.5 fill-rose-500 text-rose-500" />
                 <span>{dish.spiceLevel}</span>
@@ -139,7 +202,9 @@ export default function DishModal({ dish, onClose }) {
 
           {/* Description */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Description</h4>
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+              Description
+            </h4>
             <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
               {dish.description}
             </p>
@@ -148,10 +213,15 @@ export default function DishModal({ dish, onClose }) {
           {/* Key Ingredients */}
           {dish.ingredients && dish.ingredients.length > 0 && (
             <div>
-              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">Ingredients</h4>
+              <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                Ingredients
+              </h4>
               <div className="flex flex-wrap gap-1">
                 {dish.ingredients.map((ing, i) => (
-                  <span key={i} className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEF5FA] text-[#1E6FBA] border border-blue-100">
+                  <span
+                    key={i}
+                    className="text-[11px] px-2 py-0.5 rounded-md bg-[#EEF5FA] text-[#1E6FBA] border border-blue-100"
+                  >
                     {ing}
                   </span>
                 ))}
@@ -167,30 +237,77 @@ export default function DishModal({ dish, onClose }) {
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {dish.proteinOptions.map((opt, i) => {
-                  const isSelected = selectedProtein === opt;
-                  const optionPrice = getOptionPrice(opt);
+                  const norm = normalizeOption(opt);
+                  const count = optionQuantities[norm.name] || 0;
+                  const isSelected = count > 0;
+                  const priceDisplay = getOptionPriceDisplay(norm);
+
                   return (
-                    <button
+                    <div
                       key={i}
-                      onClick={() => setSelectedProtein(opt)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all text-left cursor-pointer ${
+                      onClick={() => {
+                        if (count === 0) handleOptionQuantityChange(norm.name, 1);
+                      }}
+                      className={`flex items-center justify-between px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all text-left ${
                         isSelected
-                          ? 'bg-[#1E6FBA] border-[#1E6FBA] text-white shadow-xs'
-                          : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
+                          ? "bg-[#1E6FBA] border-[#1E6FBA] text-white shadow-xs"
+                          : "bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 cursor-pointer"
                       }`}
                     >
-                      <div className="flex flex-col min-w-0 pr-2">
-                        <span className="text-xs font-bold truncate leading-snug">{opt}</span>
+                      <div className="flex flex-col min-w-0 pr-2 select-none">
+                        <span className="text-xs font-bold truncate leading-snug">
+                          {norm.name}
+                        </span>
                         <span
                           className={`text-[11px] font-medium leading-tight mt-0.5 ${
-                            isSelected ? 'text-blue-100' : 'text-slate-500'
+                            isSelected ? "text-blue-100" : "text-slate-500"
                           }`}
                         >
-                          Price: {optionPrice}
+                          Price: {priceDisplay}
                         </span>
                       </div>
-                      {isSelected && <Check className="w-4 h-4 text-white shrink-0 ml-1.5" />}
-                    </button>
+
+                      {/* +/- Quantity Controls */}
+                      <div
+                        className="flex items-center gap-1.5 shrink-0"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button
+                          type="button"
+                          onClick={() => handleOptionQuantityChange(norm.name, -1)}
+                          disabled={count === 0}
+                          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center font-bold text-xs transition-colors cursor-pointer ${
+                            isSelected
+                              ? "bg-white/20 hover:bg-white/30 text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                              : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed"
+                          }`}
+                          aria-label={`Decrease ${norm.name}`}
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+
+                        <span
+                          className={`text-xs sm:text-sm font-black w-4 text-center select-none ${
+                            isSelected ? "text-white" : "text-slate-900"
+                          }`}
+                        >
+                          {count}
+                        </span>
+
+                        <button
+                          type="button"
+                          onClick={() => handleOptionQuantityChange(norm.name, 1)}
+                          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center font-bold text-xs transition-colors cursor-pointer ${
+                            isSelected
+                              ? "bg-white/20 hover:bg-white/30 text-white"
+                              : "bg-[#1E6FBA] text-white hover:bg-[#185d9c]"
+                          }`}
+                          aria-label={`Increase ${norm.name}`}
+                        >
+                          <Plus className="w-3 h-3" />
+                        </button>
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -199,7 +316,9 @@ export default function DishModal({ dish, onClose }) {
 
           {/* Special Instructions */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">Special Requests (Optional)</h4>
+            <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+              Special Requests (Optional)
+            </h4>
             <input
               type="text"
               value={specialInstructions}
@@ -212,7 +331,9 @@ export default function DishModal({ dish, onClose }) {
           {/* Quantity and Live Total */}
           <div className="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl bg-[#EEF5FA] border border-blue-200">
             <div>
-              <span className="text-[11px] text-slate-500 block font-semibold">Quantity</span>
+              <span className="text-[11px] text-slate-500 block font-semibold">
+                Overall Quantity
+              </span>
               <div className="flex items-center gap-2.5 mt-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -220,7 +341,9 @@ export default function DishModal({ dish, onClose }) {
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="text-base sm:text-lg font-black text-slate-900 w-5 text-center">{quantity}</span>
+                <span className="text-base sm:text-lg font-black text-slate-900 w-5 text-center">
+                  {quantity}
+                </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
                   className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center font-bold transition-colors cursor-pointer"
@@ -231,7 +354,9 @@ export default function DishModal({ dish, onClose }) {
             </div>
 
             <div className="text-right">
-              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Total</span>
+              <span className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">
+                Total
+              </span>
               <span className="text-xl sm:text-2xl font-black text-[#1E6FBA] block">
                 {formatNaira(totalPrice)}
               </span>
@@ -239,7 +364,7 @@ export default function DishModal({ dish, onClose }) {
           </div>
         </div>
 
-        {/* Modal Footer Actions: stacked on mobile, row on sm+ */}
+        {/* Modal Footer Actions */}
         <div className="p-4 sm:p-6 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row gap-2.5 sm:gap-3 shrink-0">
           <button
             onClick={handleWhatsAppOrder}

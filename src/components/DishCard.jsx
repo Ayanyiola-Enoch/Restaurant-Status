@@ -115,7 +115,9 @@ export default function DishCard({ dish, onSelectDish }) {
               <span>
                 Choice:{" "}
                 <strong className="text-slate-300">
-                  {dish.proteinOptions[0]}
+                  {typeof dish.proteinOptions[0] === 'object' && dish.proteinOptions[0] !== null
+                    ? dish.proteinOptions[0].name
+                    : dish.proteinOptions[0]}
                 </strong>
               </span>
             ) : (
